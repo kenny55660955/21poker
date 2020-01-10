@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     var playerPlaceUsed = 0
     var playerGetAceCount = 0
     var isOpen = false
+    //HI, Welcome to my Project - Kenny
     
     
     var cardArray = [pokerType]()
@@ -97,6 +98,8 @@ class ViewController: UIViewController {
         randomNumber = GKShuffledDistribution(lowestValue: 0, highestValue: cardArray.count-1)
         labPlayResult.text = ""
     }
+    
+    //if you still interested, Just Keep Going - Kenny
     
     
     //Start按鈕
@@ -155,6 +158,7 @@ class ViewController: UIViewController {
             }
         }
     }
+    //Easy right? - Kenny
     //HIT按鈕
     @IBAction func playHit(_ sender: Any) {
         
@@ -228,6 +232,7 @@ class ViewController: UIViewController {
                 playerScore = playerScore - 1 + 10
             }else{
                 break
+                //Stoping here ,don't copy my project - Kenny
             }
         }
         var tempEmeryScore = 0
@@ -255,6 +260,7 @@ class ViewController: UIViewController {
                         tempEmeryScore = tempEmeryScore - 1 + 10
                     }else{
                         break
+                        //Why You Still Watching?????? - Kenny
                     }
                 }
                 var tempNumber = randomNumber?.nextInt()
@@ -310,6 +316,7 @@ class ViewController: UIViewController {
                         labPlayResult.text = "♛YOU WIN♛"
                         emeryPlace01.image = UIImage(named: temp3.image)
                         break
+                        //Did you Copy here? - Kenny
                     }
                     
                 }
@@ -349,7 +356,7 @@ class ViewController: UIViewController {
         
         emeryImagePlaceUsed = 0
         playerPlaceUsed = 0
-        
+        //Holy Shit i'll suit you - Kenny
         emeryGetAceCount = 0
         playerGetAceCount = 0
         start()
