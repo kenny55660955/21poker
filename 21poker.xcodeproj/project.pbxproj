@@ -13,10 +13,12 @@
 		AD41DB0C23C446A300C670F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD41DB0A23C446A300C670F1 /* Main.storyboard */; };
 		AD41DB0E23C446A500C670F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD41DB0D23C446A500C670F1 /* Assets.xcassets */; };
 		AD41DB1123C446A500C670F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD41DB0F23C446A500C670F1 /* LaunchScreen.storyboard */; };
+		AD41DB2123C4A33300C670F1 /* pokerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41DB2023C4A33300C670F1 /* pokerType.swift */; };
+		ADA7078423C88A8700D3B72A /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7078323C88A8700D3B72A /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AD41DB0123C446A300C670F1 /* 21poker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 21poker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD41DB0123C446A300C670F1 /* BlackJack_Kenny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlackJack_Kenny.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD41DB0423C446A300C670F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AD41DB0623C446A300C670F1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD41DB0823C446A300C670F1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		AD41DB0D23C446A500C670F1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD41DB1023C446A500C670F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD41DB1223C446A500C670F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD41DB2023C4A33300C670F1 /* pokerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pokerType.swift; sourceTree = "<group>"; };
+		ADA7078323C88A8700D3B72A /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +52,7 @@
 		AD41DB0223C446A300C670F1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AD41DB0123C446A300C670F1 /* 21poker.app */,
+				AD41DB0123C446A300C670F1 /* BlackJack_Kenny.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -63,6 +67,8 @@
 				AD41DB0D23C446A500C670F1 /* Assets.xcassets */,
 				AD41DB0F23C446A500C670F1 /* LaunchScreen.storyboard */,
 				AD41DB1223C446A500C670F1 /* Info.plist */,
+				AD41DB2023C4A33300C670F1 /* pokerType.swift */,
+				ADA7078323C88A8700D3B72A /* Alert.swift */,
 			);
 			path = 21poker;
 			sourceTree = "<group>";
@@ -84,7 +90,7 @@
 			);
 			name = 21poker;
 			productName = 21poker;
-			productReference = AD41DB0123C446A300C670F1 /* 21poker.app */;
+			productReference = AD41DB0123C446A300C670F1 /* BlackJack_Kenny.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,7 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD41DB0923C446A300C670F1 /* ViewController.swift in Sources */,
+				AD41DB2123C4A33300C670F1 /* pokerType.swift in Sources */,
 				AD41DB0523C446A300C670F1 /* AppDelegate.swift in Sources */,
+				ADA7078423C88A8700D3B72A /* Alert.swift in Sources */,
 				AD41DB0723C446A300C670F1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +300,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codewithKenny.-1poker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BlackJack_Kenny;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -310,7 +318,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codewithKenny.-1poker";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = BlackJack_Kenny;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
