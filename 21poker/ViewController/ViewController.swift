@@ -8,32 +8,34 @@
 
 import UIKit
 import GameplayKit
+
 class ViewController: UIViewController {
+    
     @IBOutlet weak var userStart: UIButton!
     @IBOutlet weak var userHit: UIButton!
     @IBOutlet weak var userStand: UIButton!
     @IBOutlet weak var userReplay: UIButton!
-    
+
     @IBOutlet weak var playerPlace01: UIImageView!
-    
+
     @IBOutlet weak var playerPlace02: UIImageView!
-    
+
     @IBOutlet weak var playerPlace03: UIImageView!
-    
+
     @IBOutlet weak var playerPlace04: UIImageView!
-    
+
     @IBOutlet weak var playerPlace05: UIImageView!
     @IBOutlet weak var emeryPlace01: UIImageView!
     @IBOutlet weak var emeryPlace02: UIImageView!
-    
+
     @IBOutlet weak var emeryPlace03: UIImageView!
-    
+
     @IBOutlet weak var emeryPlace04: UIImageView!
-    
+
     @IBOutlet weak var emeryPlace05: UIImageView!
-    
+
     @IBOutlet weak var labPlayResult: UILabel!
-    
+
     var emeryScore = 0
     var playerScore = 0
     var emeryFirstArrayNumber = 0
@@ -42,48 +44,48 @@ class ViewController: UIViewController {
     var playerPlaceUsed = 0
     var playerGetAceCount = 0
     var isOpen = false
-    //HI, Welcome to my Project - Kenny
-    
-    
+
+
     var cardArray = [pokerType]()
     var randomNumber: GKShuffledDistribution?
     //敵方陣營
     @IBOutlet weak var image_emery_back01: UIImageView!
-    
+
     @IBOutlet weak var image_emery_back02: UIImageView!
-    
+
     @IBOutlet weak var image_emery_back03: UIImageView!
     @IBOutlet weak var image_emery_back04: UIImageView!
-    
+
     @IBOutlet weak var image_emery_back05: UIImageView!
-    
+
     //我方陣營
     @IBOutlet weak var image_player_back01: UIImageView!
-    
+
     @IBOutlet weak var image_player_back02: UIImageView!
-    
+
     @IBOutlet weak var image_player_back03: UIImageView!
-    
+
     @IBOutlet weak var image_player_back04: UIImageView!
-    
+
     @IBOutlet weak var image_player_back05: UIImageView!
-    
-    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         userHit.isUserInteractionEnabled = false
         userHit.alpha = 0.5
         userStand.isUserInteractionEnabled = false
         userStand.alpha = 0.5
         userReplay.isUserInteractionEnabled = false
         userReplay.alpha = 0.5
-        
+
         image_emery_back01.alpha = 0
         image_emery_back02.alpha = 0
         image_emery_back03.alpha = 0
         image_emery_back04.alpha = 0
         image_emery_back05.alpha = 0
-        
+
         image_player_back01.alpha = 0
         image_player_back02.alpha = 0
         image_player_back03.alpha = 0
@@ -94,37 +96,34 @@ class ViewController: UIViewController {
      pokerType(pokerNumber: 1, image: "ace_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 2, image: "2_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 3, image: "3_of_clubs", porkerFlower: 3),pokerType(pokerNumber: 4, image: "4_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 5, image: "5_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 6, image: "6_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 7, image: "7_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 8, image: "8_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 9, image: "9_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 10, image: "10_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 10, image: "jack_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 10, image: "queen_of_hearts", porkerFlower: 3),pokerType(pokerNumber: 10, image: "king_of_hearts", porkerFlower: 3),//以上愛心
      pokerType(pokerNumber: 1, image: "ace_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 2, image: "2_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 3, image: "3_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 4, image: "4_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 5, image: "5_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 6, image: "6_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 7, image: "7_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 8, image: "8_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 9, image: "9_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 10, image: "10_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 10, image: "jack_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 10, image: "queen_of_diamonds", porkerFlower: 2),pokerType(pokerNumber: 10, image: "king_of_diamonds", porkerFlower: 2),//以上方塊
      pokerType(pokerNumber: 1, image: "ace_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 2, image: "2_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 3, image: "3_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 4, image: "4_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 5, image: "5_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 6, image: "6_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 7, image: "7_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 8, image: "8_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 9, image: "9_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 10, image: "10_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 11, image: "jack_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 12, image: "queen_of_clubs", porkerFlower: 1),pokerType(pokerNumber: 13, image: "king_of_clubs", porkerFlower: 1),]//以上梅花
-        
+
         randomNumber = GKShuffledDistribution(lowestValue: 0, highestValue: cardArray.count-1)
         labPlayResult.text = ""
     }
-    
-    //if you still interested, Just Keep Going - Kenny
-    
-    
+
     //Start按鈕
     @IBAction func userStartPlay(_ sender: Any) {
         userHit.isUserInteractionEnabled = true
         userHit.alpha = 1
-        
+
         userStand.isUserInteractionEnabled = true
         userStand.alpha = 1
-        
+
         userReplay.isUserInteractionEnabled = true
         userReplay.alpha = 1
-        
+
         userStart.isUserInteractionEnabled = false
         userStart.alpha = 0
-        
+
         start()
     }
-    
+
     func start(){
         for i in 0...3{
             var tempNumber = randomNumber?.nextInt()
             var temp2 = cardArray[tempNumber!]
-            
-            
+
+
             if i == 0{
                 emeryPlace01.image = UIImage(named: "emeryCardBack")
                 emeryScore = emeryScore + temp2.pokerNumber
@@ -158,20 +157,16 @@ class ViewController: UIViewController {
             }
         }
     }
-    //Easy right? - Kenny
     //HIT按鈕
     @IBAction func playHit(_ sender: Any) {
-        
-       
-        
         if playerPlaceUsed == 5 && playerPlaceUsed < 22{
             labPlayResult.text = "♛YOU WIN♛"
-            
+
             userHit.isUserInteractionEnabled = false
             userHit.alpha = 0.5
             userStand.isUserInteractionEnabled = false
             userStand.alpha = 0.5
-            
+
         }else{
             var tempNumber = randomNumber?.nextInt()
             var temp2 = cardArray[tempNumber!]
@@ -189,14 +184,14 @@ class ViewController: UIViewController {
                 playerPlaceUsed = playerPlaceUsed + 1
             }
         }
-        
+
         if playerScore > 21{
             labPlayResult.text = "☠BUSTED!!!☠ "
             let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED!!!☠", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
             controller.addAction(okAction)
             present(controller, animated: true, completion: nil)
-            
+
             userHit.isUserInteractionEnabled = false
             userHit.alpha = 0.5
             userStand.isUserInteractionEnabled = false
@@ -211,28 +206,28 @@ class ViewController: UIViewController {
             let okAction = UIAlertAction(title: "😎", style: .default, handler: nil)
             controller.addAction(okAction)
             present(controller, animated: true, completion: nil)
-            
+
             userHit.isUserInteractionEnabled = false
             userHit.alpha = 0.5
             userStand.isUserInteractionEnabled = false
             userStand.alpha = 0.5
         }
     }
-    
+
     //STAND按鈕
     @IBAction func btnUserStand(_ sender: Any) {
         userHit.isUserInteractionEnabled = false
         userHit.alpha = 0.5
         userStand.isUserInteractionEnabled = false
         userStand.alpha = 0.5
-        
+
         while true{
             if playerScore < 13 && playerGetAceCount > 0{
                 playerGetAceCount = playerGetAceCount - 1
                 playerScore = playerScore - 1 + 10
             }else{
                 break
-                //Stoping here ,don't copy my project - Kenny
+
             }
         }
         var tempEmeryScore = 0
@@ -241,7 +236,7 @@ class ViewController: UIViewController {
         while true{
             tempEmeryScore = emeryScore
             tempEmeryGetAceCount = emeryGetAceCount
-            
+
             if emeryScore < 22 && emeryImagePlaceUsed == 5{
                let str = String(emeryScore)
                 labPlayResult.text = "☠YOU LOSE!!☠"
@@ -249,8 +244,8 @@ class ViewController: UIViewController {
                 let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
                 controller.addAction(okAction)
                 present(controller, animated: true, completion: nil)
-                
-        
+
+
                 emeryPlace01.image = UIImage(named: temp3.image)
                 break
             }else{
@@ -260,7 +255,7 @@ class ViewController: UIViewController {
                         tempEmeryScore = tempEmeryScore - 1 + 10
                     }else{
                         break
-                        //Why You Still Watching?????? - Kenny
+
                     }
                 }
                 var tempNumber = randomNumber?.nextInt()
@@ -271,7 +266,7 @@ class ViewController: UIViewController {
                 if emeryScore > 16 && emeryScore < 22{
                     if  emeryScore >= playerScore{
                         labPlayResult.text = "☠YOU LOSE!!☠"
-                        
+
                         emeryPlace01.image = UIImage(named: temp3.image)
                         break
                     }else{
@@ -302,7 +297,7 @@ class ViewController: UIViewController {
                         if temp2.pokerNumber == 1{
                             emeryGetAceCount = emeryGetAceCount + 1
                         }
-                        
+
                     }
                     if emeryScore == 21{
                         labPlayResult.text = """
@@ -316,15 +311,15 @@ class ViewController: UIViewController {
                         labPlayResult.text = "♛YOU WIN♛"
                         emeryPlace01.image = UIImage(named: temp3.image)
                         break
-                        //Did you Copy here? - Kenny
+
                     }
-                    
+
                 }
             }
         }
-        
+
     }
-    
+
     //Replay按鈕
     @IBAction func btnUserReplay(_ sender: Any) {
         labPlayResult.text = ""
@@ -335,33 +330,33 @@ class ViewController: UIViewController {
         emeryPlace03.image = UIImage(named: "")
         emeryPlace04.image = UIImage(named: "")
         emeryPlace05.image = UIImage(named: "")
-        
+
         playerPlace01.image = UIImage(named: "")
         playerPlace02.image = UIImage(named: "")
         playerPlace03.image = UIImage(named: "")
         playerPlace04.image = UIImage(named: "")
         playerPlace05.image = UIImage(named: "")
-        
+
         userHit.isUserInteractionEnabled = true
         userHit.alpha = 1
-        
+
         userStand.isUserInteractionEnabled = true
         userStand.alpha = 1
-        
+
         userReplay.isUserInteractionEnabled = true
         userReplay.alpha = 1
-        
+
         userStart.isUserInteractionEnabled = false
         userStart.alpha = 0
-        
+
         emeryImagePlaceUsed = 0
         playerPlaceUsed = 0
-        //Holy Shit i'll suit you - Kenny
+
         emeryGetAceCount = 0
         playerGetAceCount = 0
         start()
-        
-        
+
+
     }
     
 }

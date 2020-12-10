@@ -18,9 +18,5 @@ struct Alert {
         }
         
     }
-//    static func winAlert(on vc: UIViewController){
-//        showBasicAlert(on: vc, with: "Lose", message: "Busted")
-//    }
-    
 }
 
