@@ -355,7 +355,7 @@ class ViewController: UIViewController {
         emeryGetAceCount = 0
         playerGetAceCount = 0
         start()
-        
+
 
     }
     
