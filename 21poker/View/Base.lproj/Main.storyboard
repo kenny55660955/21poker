@@ -33,19 +33,19 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="EBI-wa-MBK">
                                         <rect key="frame" x="2" y="129" width="371" height="79"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="Yt3-Pv-xHC" userLabel="emeryCardBack05">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="Yt3-Pv-xHC" userLabel="emeryCardBack05">
                                                 <rect key="frame" x="0.0" y="0.0" width="72.5" height="79"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="8oP-gz-R8O" userLabel="emeryCardBack04">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="8oP-gz-R8O" userLabel="emeryCardBack04">
                                                 <rect key="frame" x="74.5" y="0.0" width="72.5" height="79"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="fNh-4F-Iv0" userLabel="emeryCardBack03">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="fNh-4F-Iv0" userLabel="emeryCardBack03">
                                                 <rect key="frame" x="149" y="0.0" width="73" height="79"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="NCZ-Fj-9pc" userLabel="emeryCardBack02">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="NCZ-Fj-9pc" userLabel="emeryCardBack02">
                                                 <rect key="frame" x="224" y="0.0" width="72.5" height="79"/>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="H5a-gb-Idw" userLabel="emeryCardBack01">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="H5a-gb-Idw" userLabel="emeryCardBack01">
                                                 <rect key="frame" x="298.5" y="0.0" width="72.5" height="79"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="79" id="T2l-LN-ebY"/>
@@ -77,7 +77,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="aAm-wy-AtV" firstAttribute="leading" secondItem="ehL-Ic-UwJ" secondAttribute="leading" constant="2" id="3E1-Z3-OVT"/>
                                     <constraint firstAttribute="trailing" secondItem="aAm-wy-AtV" secondAttribute="trailing" constant="2" id="CJB-pt-GAa"/>
@@ -150,7 +150,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="xuG-vX-6Rx" firstAttribute="top" secondItem="fKQ-eg-Yub" secondAttribute="top" constant="106" id="0fi-bo-9LU"/>
                                     <constraint firstAttribute="bottom" secondItem="Hd3-1U-rkP" secondAttribute="bottom" constant="3" id="FFE-QZ-RKa"/>
@@ -172,23 +172,23 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5G-GU-wFJ">
                                 <rect key="frame" x="0.0" y="509" width="375" height="158"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="FGJ-7L-cz5" userLabel="playerCardBack01">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="FGJ-7L-cz5" userLabel="playerCardBack01">
                                         <rect key="frame" x="0.0" y="21" width="75.5" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-aN-xrI" userLabel="playerCardBack02">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="4v7-aN-xrI" userLabel="playerCardBack02">
                                         <rect key="frame" x="75.5" y="21" width="75" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="3l3-Ai-xOL" userLabel="playerCardBack03">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="3l3-Ai-xOL" userLabel="playerCardBack03">
                                         <rect key="frame" x="150.5" y="21" width="74" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="35d-5t-djO" userLabel="playerCardBack05">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="35d-5t-djO" userLabel="playerCardBack05">
                                         <rect key="frame" x="298.5" y="21" width="76.5" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardBackground" translatesAutoresizingMaskIntoConstraints="NO" id="A9s-Nt-ffe" userLabel="playerCardBack04">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cardStyle" translatesAutoresizingMaskIntoConstraints="NO" id="A9s-Nt-ffe" userLabel="playerCardBack04">
                                         <rect key="frame" x="224.5" y="21" width="74" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
@@ -213,7 +213,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -286,7 +286,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cardBackground" width="800" height="800"/>
+        <image name="cardStyle" width="430" height="512"/>
         <image name="chris" width="800" height="800"/>
         <image name="chrisBackGround" width="550" height="366"/>
         <image name="rePlayButton" width="1067" height="1112"/>
@@ -299,17 +299,8 @@
         <systemColor name="systemPinkColor">
             <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
