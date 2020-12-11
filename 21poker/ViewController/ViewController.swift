@@ -103,8 +103,7 @@ class ViewController: UIViewController {
         image_player_back05.alpha = 0
     }
     
-    //Start按鈕
-    @IBAction func userStartPlay(_ sender: Any) {
+    private func setupButtonAlpha() {
         userHit.isUserInteractionEnabled = true
         userHit.alpha = 1
         
@@ -116,9 +115,9 @@ class ViewController: UIViewController {
         
         userStart.isUserInteractionEnabled = false
         userStart.alpha = 0
-        
-        start()
     }
+    
+    // MARK: - Logic Method
     
     private func start(){
         for i in 0...3{
@@ -158,8 +157,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //HIT按鈕
-    @IBAction private func playHit(_ sender: Any) {
+    private func hit() {
         if playerPlaceUsed == 5 && playerPlaceUsed < 22{
             labPlayResult.text = "♛YOU WIN♛"
             
@@ -226,9 +224,8 @@ class ViewController: UIViewController {
             if playerScore < 13 && playerGetAceCount > 0{
                 playerGetAceCount = playerGetAceCount - 1
                 playerScore = playerScore - 1 + 10
-            }else{
+            } else {
                 break
-                
             }
         }
         var tempEmeryScore = 0
@@ -318,11 +315,9 @@ class ViewController: UIViewController {
                 }
             }
         }
-        
     }
     
-    //Replay按鈕
-    @IBAction private func btnUserReplay(_ sender: Any) {
+    private func replay() {
         labPlayResult.text = ""
         emeryScore = 0
         playerScore = 0
@@ -355,6 +350,26 @@ class ViewController: UIViewController {
         
         emeryGetAceCount = 0
         playerGetAceCount = 0
+    }
+    
+    // MARK: - Button Action
+    //Start按鈕
+    @IBAction func userStartPlay(_ sender: Any) {
+        
+        setupButtonAlpha()
+        
+        start()
+    }
+    
+    //HIT按鈕
+    @IBAction private func playHit(_ sender: Any) {
+        hit()
+        
+    }
+    
+    //Replay按鈕
+    @IBAction private func btnUserReplay(_ sender: Any) {
+        replay()
         start()
     }
 }
