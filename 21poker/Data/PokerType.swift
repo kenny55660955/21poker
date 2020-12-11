@@ -12,4 +12,10 @@ struct PokerType {
     let pokerNumber: Int
     let image: String
     let porkerFlower: Int
+    
+    init(pokerNumber: Int, image: String, porkerFlower: Int) {
+        self.pokerNumber = pokerNumber
+        self.image = image
+        self.porkerFlower = porkerFlower
+    }
 }

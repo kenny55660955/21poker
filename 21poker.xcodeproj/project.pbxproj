@@ -14,6 +14,8 @@
 		AD41DB0E23C446A500C670F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD41DB0D23C446A500C670F1 /* Assets.xcassets */; };
 		AD41DB1123C446A500C670F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD41DB0F23C446A500C670F1 /* LaunchScreen.storyboard */; };
 		AD41DB2123C4A33300C670F1 /* PokerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41DB2023C4A33300C670F1 /* PokerType.swift */; };
+		AD5B0572258301BB0023DD5B /* GmaeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5B0571258301BB0023DD5B /* GmaeLogic.swift */; };
+		AD5B0576258301C70023DD5B /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5B0575258301C70023DD5B /* CardModel.swift */; };
 		ADA7078423C88A8700D3B72A /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7078323C88A8700D3B72A /* Alert.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +29,8 @@
 		AD41DB1023C446A500C670F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD41DB1223C446A500C670F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD41DB2023C4A33300C670F1 /* PokerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerType.swift; sourceTree = "<group>"; };
+		AD5B0571258301BB0023DD5B /* GmaeLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmaeLogic.swift; sourceTree = "<group>"; };
+		AD5B0575258301C70023DD5B /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		ADA7078323C88A8700D3B72A /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,6 +64,7 @@
 		AD41DB0323C446A300C670F1 /* 21poker */ = {
 			isa = PBXGroup;
 			children = (
+				AD5B0570258301A70023DD5B /* Model */,
 				AD5B0560258212120023DD5B /* Data */,
 				AD5B055F258211DD0023DD5B /* View */,
 				AD5B055D258211CF0023DD5B /* ViewController */,
@@ -103,6 +108,15 @@
 				AD41DB2023C4A33300C670F1 /* PokerType.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		AD5B0570258301A70023DD5B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AD5B0571258301BB0023DD5B /* GmaeLogic.swift */,
+				AD5B0575258301C70023DD5B /* CardModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,7 +193,9 @@
 				AD41DB0923C446A300C670F1 /* ViewController.swift in Sources */,
 				AD41DB2123C4A33300C670F1 /* PokerType.swift in Sources */,
 				AD41DB0523C446A300C670F1 /* AppDelegate.swift in Sources */,
+				AD5B0576258301C70023DD5B /* CardModel.swift in Sources */,
 				ADA7078423C88A8700D3B72A /* Alert.swift in Sources */,
+				AD5B0572258301BB0023DD5B /* GmaeLogic.swift in Sources */,
 				AD41DB0723C446A300C670F1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
