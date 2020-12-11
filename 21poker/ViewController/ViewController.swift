@@ -17,36 +17,21 @@ class ViewController: UIViewController {
     @IBOutlet weak var userHit: UIButton!
     @IBOutlet weak var userStand: UIButton!
     @IBOutlet weak var userReplay: UIButton!
-    
+    /// 我方卡片放置區
     @IBOutlet weak var playerPlace01: UIImageView!
-    
     @IBOutlet weak var playerPlace02: UIImageView!
-    
     @IBOutlet weak var playerPlace03: UIImageView!
-    
     @IBOutlet weak var playerPlace04: UIImageView!
-    
     @IBOutlet weak var playerPlace05: UIImageView!
+    /// 敵方卡片放置區
     @IBOutlet weak var emeryPlace01: UIImageView!
     @IBOutlet weak var emeryPlace02: UIImageView!
-    
     @IBOutlet weak var emeryPlace03: UIImageView!
-    
     @IBOutlet weak var emeryPlace04: UIImageView!
-    
     @IBOutlet weak var emeryPlace05: UIImageView!
-    
+    /// 結果標題
     @IBOutlet weak var labPlayResult: UILabel!
     
-    var emeryScore = 0
-    var playerScore = 0
-    var emeryFirstArrayNumber = 0
-    var emeryImagePlaceUsed = 0
-    var emeryGetAceCount = 0
-    var playerPlaceUsed = 0
-    var playerGetAceCount = 0
-    var isOpen = false
-    var randomNumber: GKShuffledDistribution?
     //敵方陣營
     @IBOutlet weak var image_emery_back01: UIImageView!
     @IBOutlet weak var image_emery_back02: UIImageView!
@@ -61,11 +46,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var image_player_back04: UIImageView!
     @IBOutlet weak var image_player_back05: UIImageView!
     
+    /// 所有卡片
     var cardArray =
         [PokerType(pokerNumber: 1, image: "ace_of_spades", porkerFlower: 4), PokerType(pokerNumber: 2, image: "2_of_spades", porkerFlower: 4), PokerType(pokerNumber: 3, image: "3_of_spades", porkerFlower: 4), PokerType(pokerNumber: 4, image: "4_of_spades", porkerFlower: 4),PokerType(pokerNumber: 5, image: "5_of_spades", porkerFlower: 4),PokerType(pokerNumber: 6, image: "6_of_spades", porkerFlower: 4),PokerType(pokerNumber: 7, image: "7_of_spades", porkerFlower: 4),PokerType(pokerNumber: 8, image: "8_of_spades", porkerFlower: 4),PokerType(pokerNumber: 9, image: "9_of_spades", porkerFlower: 4),PokerType(pokerNumber: 10, image: "10_of_spades", porkerFlower: 4),PokerType(pokerNumber: 10, image: "jack_of_spades", porkerFlower: 4),PokerType(pokerNumber: 10, image: "king_of_spades", porkerFlower: 4),PokerType(pokerNumber: 10, image: "queen_of_spades", porkerFlower: 4),//以上黑桃
          PokerType(pokerNumber: 1, image: "ace_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 2, image: "2_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 3, image: "3_of_clubs", porkerFlower: 3),PokerType(pokerNumber: 4, image: "4_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 5, image: "5_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 6, image: "6_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 7, image: "7_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 8, image: "8_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 9, image: "9_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 10, image: "10_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 10, image: "jack_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 10, image: "queen_of_hearts", porkerFlower: 3),PokerType(pokerNumber: 10, image: "king_of_hearts", porkerFlower: 3),//以上愛心
          PokerType(pokerNumber: 1, image: "ace_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 2, image: "2_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 3, image: "3_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 4, image: "4_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 5, image: "5_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 6, image: "6_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 7, image: "7_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 8, image: "8_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 9, image: "9_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 10, image: "10_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 10, image: "jack_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 10, image: "queen_of_diamonds", porkerFlower: 2),PokerType(pokerNumber: 10, image: "king_of_diamonds", porkerFlower: 2),//以上方塊
          PokerType(pokerNumber: 1, image: "ace_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 2, image: "2_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 3, image: "3_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 4, image: "4_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 5, image: "5_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 6, image: "6_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 7, image: "7_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 8, image: "8_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 9, image: "9_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 10, image: "10_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 11, image: "jack_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 12, image: "queen_of_clubs", porkerFlower: 1),PokerType(pokerNumber: 13, image: "king_of_clubs", porkerFlower: 1),]//以上梅花
+    
+    var emeryScore = 0
+    var playerScore = 0
+    var emeryFirstArrayNumber = 0
+    var emeryImagePlaceUsed = 0
+    var emeryGetAceCount = 0
+    var playerPlaceUsed = 0
+    var playerGetAceCount = 0
+    var isOpen = false
+    var randomNumber: GKShuffledDistribution?
     
     // MARK: - Lift Cycle
     override func viewDidLoad() {
@@ -103,8 +99,7 @@ class ViewController: UIViewController {
         image_player_back05.alpha = 0
     }
     
-    //Start按鈕
-    @IBAction func userStartPlay(_ sender: Any) {
+    private func changeCardsAlpha() {
         userHit.isUserInteractionEnabled = true
         userHit.alpha = 1
         
@@ -116,14 +111,13 @@ class ViewController: UIViewController {
         
         userStart.isUserInteractionEnabled = false
         userStart.alpha = 0
-        
-        start()
     }
     
+    // MARK: - 功能方法
     private func start(){
         for i in 0...3{
-            var tempNumber = randomNumber?.nextInt()
-            var temp2 = cardArray[tempNumber!]
+            let tempNumber = randomNumber?.nextInt()
+            let temp2 = cardArray[tempNumber!]
             if i == 0{
                 emeryPlace01.image = UIImage(named: "emeryCardBack")
                 emeryScore = emeryScore + temp2.pokerNumber
@@ -157,9 +151,8 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    //HIT按鈕
-    @IBAction private func playHit(_ sender: Any) {
+    /// 每次都會去判斷卡片分數
+    private func hit() {
         if playerPlaceUsed == 5 && playerPlaceUsed < 22{
             labPlayResult.text = "♛YOU WIN♛"
             
@@ -169,8 +162,8 @@ class ViewController: UIViewController {
             userStand.alpha = 0.5
             
         }else{
-            var tempNumber = randomNumber?.nextInt()
-            var temp2 = cardArray[tempNumber!]
+            let tempNumber = randomNumber?.nextInt()
+            let temp2 = cardArray[tempNumber!]
             if playerPlaceUsed == 2{
                 playerPlace03.image = UIImage(named: temp2.image)
                 playerScore = playerScore + temp2.pokerNumber
@@ -215,8 +208,7 @@ class ViewController: UIViewController {
         }
     }
     
-    //STAND按鈕
-    @IBAction private func btnUserStand(_ sender: Any) {
+    private func stand() {
         userHit.isUserInteractionEnabled = false
         userHit.alpha = 0.5
         userStand.isUserInteractionEnabled = false
@@ -233,7 +225,7 @@ class ViewController: UIViewController {
         }
         var tempEmeryScore = 0
         var tempEmeryGetAceCount = 0
-        var temp3 = cardArray[emeryFirstArrayNumber]
+        let temp3 = cardArray[emeryFirstArrayNumber]
         while true{
             tempEmeryScore = emeryScore
             tempEmeryGetAceCount = emeryGetAceCount
@@ -259,8 +251,8 @@ class ViewController: UIViewController {
                         
                     }
                 }
-                var tempNumber = randomNumber?.nextInt()
-                var temp2 = cardArray[tempNumber!]
+                let tempNumber = randomNumber?.nextInt()
+                let temp2 = cardArray[tempNumber!]
                 if tempEmeryScore > emeryScore && tempEmeryScore > 16 && tempEmeryScore < 22{
                     emeryScore = tempEmeryScore
                 }
@@ -321,8 +313,8 @@ class ViewController: UIViewController {
         
     }
     
-    //Replay按鈕
-    @IBAction private func btnUserReplay(_ sender: Any) {
+    /// 重製卡片狀態
+    private func replay() {
         labPlayResult.text = ""
         emeryScore = 0
         playerScore = 0
@@ -355,6 +347,30 @@ class ViewController: UIViewController {
         
         emeryGetAceCount = 0
         playerGetAceCount = 0
+    }
+    // MARK: - 按鈕功能
+    //Start按鈕
+    @IBAction func userStartPlay(_ sender: Any) {
+        changeCardsAlpha()
+        start()
+    }
+    
+    
+    
+    //HIT按鈕
+    @IBAction private func playHit(_ sender: Any) {
+        hit()
+    }
+    
+    //STAND按鈕
+    @IBAction private func btnUserStand(_ sender: Any) {
+        stand()
+    }
+    
+    //Replay按鈕
+    @IBAction private func btnUserReplay(_ sender: Any) {
+        
+        replay()
         start()
     }
 }
