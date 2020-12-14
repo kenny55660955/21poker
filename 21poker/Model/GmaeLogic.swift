@@ -29,10 +29,6 @@ class GameLogic {
         print("0000 1.完成換新牌")
     }
     
-    func getImage() -> String {
-       let string =  model.setupImage()
-        return string
-    }
     
     // MARK: - Method
     /// 開始取得牌
