@@ -7,9 +7,31 @@
 //
 
 import Foundation
+// MARK: - Welcome
+struct PokerType: Codable {
+    let success: Bool
+    let deckID: String
+    let cards: [Card]
+    let remaining: Int
 
-struct PokerType {
-    let pokerNumber: Int
-    let image: String
-    let porkerFlower: Int
+    enum CodingKeys: String, CodingKey {
+        case success
+        case deckID = "deck_id"
+        case cards, remaining
+    }
 }
+
+// MARK: - Card
+struct Card: Codable {
+    let code: String
+    let image: String
+    let images: Images
+    let value, suit: String
+}
+
+// MARK: - Images
+struct Images: Codable {
+    let svg: String
+    let png: String
+}
+
