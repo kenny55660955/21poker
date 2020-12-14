@@ -16,6 +16,7 @@
 		AD41DB2123C4A33300C670F1 /* PokerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41DB2023C4A33300C670F1 /* PokerType.swift */; };
 		AD441723258717D5000E9C77 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD441722258717D5000E9C77 /* Deck.swift */; };
 		AD44172625871849000E9C77 /* DeckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD44172525871849000E9C77 /* DeckManager.swift */; };
+		AD441734258766CD000E9C77 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD441733258766CD000E9C77 /* CardModel.swift */; };
 		AD5B0572258301BB0023DD5B /* GmaeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5B0571258301BB0023DD5B /* GmaeLogic.swift */; };
 		AD5B0576258301C70023DD5B /* DeckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5B0575258301C70023DD5B /* DeckModel.swift */; };
 		ADA7078423C88A8700D3B72A /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7078323C88A8700D3B72A /* Alert.swift */; };
@@ -33,6 +34,7 @@
 		AD41DB2023C4A33300C670F1 /* PokerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerType.swift; sourceTree = "<group>"; };
 		AD441722258717D5000E9C77 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		AD44172525871849000E9C77 /* DeckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckManager.swift; sourceTree = "<group>"; };
+		AD441733258766CD000E9C77 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		AD5B0571258301BB0023DD5B /* GmaeLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmaeLogic.swift; sourceTree = "<group>"; };
 		AD5B0575258301C70023DD5B /* DeckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckModel.swift; sourceTree = "<group>"; };
 		ADA7078323C88A8700D3B72A /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				AD41DB2023C4A33300C670F1 /* PokerType.swift */,
 				AD441722258717D5000E9C77 /* Deck.swift */,
+				AD441733258766CD000E9C77 /* CardModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 				ADA7078423C88A8700D3B72A /* Alert.swift in Sources */,
 				AD5B0572258301BB0023DD5B /* GmaeLogic.swift in Sources */,
 				AD41DB0723C446A300C670F1 /* SceneDelegate.swift in Sources */,
+				AD441734258766CD000E9C77 /* CardModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
