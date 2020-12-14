@@ -1,5 +1,5 @@
 //
-//  Deck.swift
+//  State.swift
 //  21poker
 //
 //  Created by Kenny on 2020/12/14.
@@ -8,9 +8,6 @@
 
 import Foundation
 
-struct Deck: Codable {
-    let success: Bool
-    let deck_id: String
-    let shuffled: Bool
-    let remaining: Int
+enum State: Int {
+    case begin = 0, playerState, bankerState, end
 }

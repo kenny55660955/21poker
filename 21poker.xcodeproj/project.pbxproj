@@ -14,12 +14,9 @@
 		AD41DB0E23C446A500C670F1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD41DB0D23C446A500C670F1 /* Assets.xcassets */; };
 		AD41DB1123C446A500C670F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD41DB0F23C446A500C670F1 /* LaunchScreen.storyboard */; };
 		AD41DB2123C4A33300C670F1 /* PokerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD41DB2023C4A33300C670F1 /* PokerType.swift */; };
-		AD441723258717D5000E9C77 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD441722258717D5000E9C77 /* Deck.swift */; };
-		AD44172625871849000E9C77 /* DeckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD44172525871849000E9C77 /* DeckManager.swift */; };
 		AD441734258766CD000E9C77 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD441733258766CD000E9C77 /* CardModel.swift */; };
+		AD441738258768B1000E9C77 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD441737258768B1000E9C77 /* State.swift */; };
 		AD5B0572258301BB0023DD5B /* GmaeLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5B0571258301BB0023DD5B /* GmaeLogic.swift */; };
-		AD5B0576258301C70023DD5B /* DeckModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD5B0575258301C70023DD5B /* DeckModel.swift */; };
-		ADA7078423C88A8700D3B72A /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADA7078323C88A8700D3B72A /* Alert.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,12 +29,9 @@
 		AD41DB1023C446A500C670F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD41DB1223C446A500C670F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD41DB2023C4A33300C670F1 /* PokerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokerType.swift; sourceTree = "<group>"; };
-		AD441722258717D5000E9C77 /* Deck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
-		AD44172525871849000E9C77 /* DeckManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckManager.swift; sourceTree = "<group>"; };
 		AD441733258766CD000E9C77 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		AD441737258768B1000E9C77 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		AD5B0571258301BB0023DD5B /* GmaeLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GmaeLogic.swift; sourceTree = "<group>"; };
-		AD5B0575258301C70023DD5B /* DeckModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckModel.swift; sourceTree = "<group>"; };
-		ADA7078323C88A8700D3B72A /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +64,7 @@
 		AD41DB0323C446A300C670F1 /* 21poker */ = {
 			isa = PBXGroup;
 			children = (
+				AD441736258768A0000E9C77 /* State */,
 				AD5B0570258301A70023DD5B /* Model */,
 				AD5B0560258212120023DD5B /* Data */,
 				AD5B055F258211DD0023DD5B /* View */,
@@ -79,6 +74,14 @@
 				AD41DB0D23C446A500C670F1 /* Assets.xcassets */,
 			);
 			path = 21poker;
+			sourceTree = "<group>";
+		};
+		AD441736258768A0000E9C77 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				AD441737258768B1000E9C77 /* State.swift */,
+			);
+			path = State;
 			sourceTree = "<group>";
 		};
 		AD5B055B258211C10023DD5B /* Support */ = {
@@ -93,7 +96,6 @@
 		AD5B055D258211CF0023DD5B /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				ADA7078323C88A8700D3B72A /* Alert.swift */,
 				AD41DB0823C446A300C670F1 /* ViewController.swift */,
 			);
 			path = ViewController;
@@ -112,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				AD41DB2023C4A33300C670F1 /* PokerType.swift */,
-				AD441722258717D5000E9C77 /* Deck.swift */,
 				AD441733258766CD000E9C77 /* CardModel.swift */,
 			);
 			path = Data;
@@ -122,8 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				AD5B0571258301BB0023DD5B /* GmaeLogic.swift */,
-				AD5B0575258301C70023DD5B /* DeckModel.swift */,
-				AD44172525871849000E9C77 /* DeckManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,10 +201,7 @@
 				AD41DB0923C446A300C670F1 /* ViewController.swift in Sources */,
 				AD41DB2123C4A33300C670F1 /* PokerType.swift in Sources */,
 				AD41DB0523C446A300C670F1 /* AppDelegate.swift in Sources */,
-				AD5B0576258301C70023DD5B /* DeckModel.swift in Sources */,
-				AD44172625871849000E9C77 /* DeckManager.swift in Sources */,
-				AD441723258717D5000E9C77 /* Deck.swift in Sources */,
-				ADA7078423C88A8700D3B72A /* Alert.swift in Sources */,
+				AD441738258768B1000E9C77 /* State.swift in Sources */,
 				AD5B0572258301BB0023DD5B /* GmaeLogic.swift in Sources */,
 				AD41DB0723C446A300C670F1 /* SceneDelegate.swift in Sources */,
 				AD441734258766CD000E9C77 /* CardModel.swift in Sources */,
