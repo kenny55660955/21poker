@@ -48,6 +48,7 @@ class GameLogic {
                 emeryScore = emeryScore + randomCard.pokerNumber
                 emeryFirstArrayNumber = emeryScore
                 if emeryScore == 1 {
+                    
                     emeryGetAceCount = emeryGetAceCount + 1
                 }
                 emeryImagePlaceUsed = emeryImagePlaceUsed + 1
