@@ -58,8 +58,8 @@ class ViewController: UIViewController {
         setupUI()
         getPokerData()
         
-        let imageName = gameLogic.getImage()
-        image_player_back01.image = UIImage(named: imageName)
+        
+        
     
     }
     
