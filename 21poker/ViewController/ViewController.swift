@@ -156,175 +156,18 @@ class ViewController: UIViewController {
     }
     
     // MARK: - 功能方法
+    
     private func start(){
-        
        gameLogic.start()
     }
-    /// 每次都會去判斷卡片分數
+    /// 叫牌
     private func hit() {
         gameLogic.hit()
     }
-//        if playerPlaceUsed == 5 && playerPlaceUsed < 22{
-//            labPlayResult.text = "♛YOU WIN♛"
-//
-//            userHit.isUserInteractionEnabled = false
-//            userHit.alpha = 0.5
-//            userStand.isUserInteractionEnabled = false
-//            userStand.alpha = 0.5
-//
-//        } else {
-//            let tempNumber = randomNumber?.nextInt()
-//            let temp2 = cardArray[tempNumber!]
-//            if playerPlaceUsed == 2{
-//                playerPlace03.image = UIImage(named: temp2.image)
-//                playerScore = playerScore + temp2.pokerNumber
-//                playerPlaceUsed = playerPlaceUsed + 1
-//            }else if playerPlaceUsed == 3{
-//                playerPlace04.image = UIImage(named: temp2.image)
-//                playerScore = playerScore + temp2.pokerNumber
-//                playerPlaceUsed = playerPlaceUsed + 1
-//            }else if playerPlaceUsed == 4{
-//                playerPlace05.image = UIImage(named: temp2.image)
-//                playerScore = playerScore + temp2.pokerNumber
-//                playerPlaceUsed = playerPlaceUsed + 1
-//            }
-//        }
-//
-//        if playerScore > 21{
-//            labPlayResult.text = "☠BUSTED!!!☠ "
-//            let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED!!!☠", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
-//            controller.addAction(okAction)
-//            present(controller, animated: true, completion: nil)
-//
-//            userHit.isUserInteractionEnabled = false
-//            userHit.alpha = 0.5
-//            userStand.isUserInteractionEnabled = false
-//            userStand.alpha = 0.5
-//        }
-//        if playerScore == 21{
-//            labPlayResult.text = """
-//                                BLACKJACK!!!!
-//                                ♛YOU WIN♛
-//                            """
-//            let controller  = UIAlertController(title: "♛WIN♛",message: "Congratulations!!", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "😎", style: .default, handler: nil)
-//            controller.addAction(okAction)
-//            present(controller, animated: true, completion: nil)
-//
-//            userHit.isUserInteractionEnabled = false
-//            userHit.alpha = 0.5
-//            userStand.isUserInteractionEnabled = false
-//            userStand.alpha = 0.5
-//        }
-//    }
-//
+    /// 停牌
     private func stand() {
         gameLogic.stand()
     }
-//        userHit.isUserInteractionEnabled = false
-//        userHit.alpha = 0.5
-//        userStand.isUserInteractionEnabled = false
-//        userStand.alpha = 0.5
-//
-//        while true{
-//            if playerScore < 13 && playerGetAceCount > 0{
-//                playerGetAceCount = playerGetAceCount - 1
-//                playerScore = playerScore - 1 + 10
-//            }else{
-//                break
-//
-//            }
-//        }
-//        var tempEmeryScore = 0
-//        var tempEmeryGetAceCount = 0
-//        let temp3 = cardArray[emeryFirstArrayNumber]
-//        while true{
-//            tempEmeryScore = emeryScore
-//            tempEmeryGetAceCount = emeryGetAceCount
-//
-//            if emeryScore < 22 && emeryImagePlaceUsed == 5{
-//                let str = String(emeryScore)
-//                labPlayResult.text = "☠YOU LOSE!!☠"
-//                let controller  = UIAlertController(title: "☠LOSE☠",message: "emeryNumber" + str, preferredStyle: .alert)
-//                let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
-//                controller.addAction(okAction)
-//                present(controller, animated: true, completion: nil)
-//
-//
-//                emeryPlace01.image = UIImage(named: temp3.image)
-//                break
-//            }else{
-//                while true{
-//                    if tempEmeryScore < 13 && tempEmeryGetAceCount > 0{
-//                        tempEmeryGetAceCount = tempEmeryGetAceCount - 1
-//                        tempEmeryScore = tempEmeryScore - 1 + 10
-//                    }else{
-//                        break
-//
-//                    }
-//                }
-//                let tempNumber = randomNumber?.nextInt()
-//                let temp2 = cardArray[tempNumber!]
-//                if tempEmeryScore > emeryScore && tempEmeryScore > 16 && tempEmeryScore < 22{
-//                    emeryScore = tempEmeryScore
-//                }
-//                if emeryScore > 16 && emeryScore < 22{
-//                    if  emeryScore >= playerScore{
-//                        labPlayResult.text = "☠YOU LOSE!!☠"
-//
-//                        emeryPlace01.image = UIImage(named: temp3.image)
-//                        break
-//                    }else{
-//                        labPlayResult.text = "♛YOU WIN♛"
-//                        emeryPlace01.image = UIImage(named: temp3.image)
-//                        break
-//                    }
-//                }
-//                else{
-//                    if emeryImagePlaceUsed == 2{
-//                        emeryPlace03.image = UIImage(named: temp2.image)
-//                        emeryScore = emeryScore + temp2.pokerNumber
-//                        emeryImagePlaceUsed = emeryImagePlaceUsed + 1
-//                        if temp2.pokerNumber == 1{
-//                            emeryGetAceCount = emeryGetAceCount + 1
-//                        }
-//                    }else if emeryImagePlaceUsed == 3{
-//                        emeryPlace04.image = UIImage(named: temp2.image)
-//                        emeryScore = emeryScore + temp2.pokerNumber
-//                        emeryImagePlaceUsed = emeryImagePlaceUsed + 1
-//                        if temp2.pokerNumber == 1{
-//                            emeryGetAceCount = emeryGetAceCount + 1
-//                        }
-//                    }else if emeryImagePlaceUsed == 4{
-//                        emeryPlace05.image = UIImage(named: temp2.image)
-//                        emeryScore = emeryScore + temp2.pokerNumber
-//                        emeryImagePlaceUsed = emeryImagePlaceUsed + 1
-//                        if temp2.pokerNumber == 1{
-//                            emeryGetAceCount = emeryGetAceCount + 1
-//                        }
-//
-//                    }
-//                    if emeryScore == 21{
-//                        labPlayResult.text = """
-//                                                BLACK JACK!!!
-//                                                ☠YOU LOSE!!☠
-//                                                """
-//                        emeryPlace01.image = UIImage(named: temp3.image)
-//                        break
-//                    }
-//                    if emeryScore > 21{
-//                        labPlayResult.text = "♛YOU WIN♛"
-//                        emeryPlace01.image = UIImage(named: temp3.image)
-//                        break
-//
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
-    
    
     // MARK: - 按鈕功能
     //Start按鈕
@@ -351,6 +194,50 @@ class ViewController: UIViewController {
 }
 // MARK: - Logic Delegate 傳資料過來
 extension ViewController: GameLogicDelegate {
+    func didGetPlaceUsedData(playerUsed: Int, playScore: Int) {
+        let poker = gameLogic.returnCardName()
+        if playerUsed == 2 {
+            playerPlace03.image = UIImage(named: poker.image)
+        } else if playerUsed == 3 {
+            playerPlace04.image = UIImage(named: poker.image)
+        } else if playerUsed == 4 {
+            playerPlace05.image = UIImage(named: poker.image)
+        }
+        
+        /// 分數部分
+        if playerScore > 21{
+            labPlayResult.text = "☠BUSTED!!!☠ "
+            let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED!!!☠", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
+            controller.addAction(okAction)
+            present(controller, animated: true, completion: nil)
+            
+            userHit.isUserInteractionEnabled = false
+            userHit.alpha = 0.5
+            userStand.isUserInteractionEnabled = false
+            userStand.alpha = 0.5
+        }
+        
+        if playerScore == 21{
+            labPlayResult.text = """
+                                  BLACKJACK!!!!
+                                  ♛YOU WIN♛
+                                  """
+            let controller  = UIAlertController(title: "♛WIN♛",message: "Congratulations!!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "😎", style: .default, handler: nil)
+            controller.addAction(okAction)
+            present(controller, animated: true, completion: nil)
+            
+            userHit.isUserInteractionEnabled = false
+            userHit.alpha = 0.5
+            userStand.isUserInteractionEnabled = false
+            userStand.alpha = 0.5
+        }
+        
+        print("playerUsed \(playerUsed)")
+        print("PlayScore : \(playScore)")
+    }
+    
 
     func didGetEmeryFirstArrayNumber(number: Int) {
         let poker = gameLogic.returnCardName()

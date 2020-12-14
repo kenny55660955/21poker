@@ -11,5 +11,4 @@ struct PokerType {
     let pokerNumber: Int
     let image: String
     let porkerFlower: Int
-
 }
