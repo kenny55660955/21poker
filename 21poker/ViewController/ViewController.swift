@@ -156,6 +156,7 @@ class ViewController: UIViewController {
     
     //HIT按鈕
     @IBAction private func playHit(_ sender: Any) {
+        state = .start
         hit()
     }
     
@@ -178,7 +179,7 @@ extension ViewController: GameLogicDelegate {
     func didReceiveBankerBJ() {
         state = .end
         labPlayResult.text = "Black Jack"
-        let controller  = UIAlertController(title: "恭喜Black Jack",message: "OK", preferredStyle: .alert)
+        let controller  = UIAlertController(title: "恭喜Banker BJ",message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
@@ -192,7 +193,7 @@ extension ViewController: GameLogicDelegate {
     func didReceiveUserBJ() {
         state = .end
         labPlayResult.text = "Black Jack"
-        let controller  = UIAlertController(title: "",message: "OK", preferredStyle: .alert)
+        let controller  = UIAlertController(title: "恭喜Player BJ",message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
@@ -225,7 +226,7 @@ extension ViewController: GameLogicDelegate {
         let emeryScore = gameLogic.emeryScore
         
         labPlayResult.text = "Banker爆炸"
-        let controller  = UIAlertController(title: "Win",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
+        let controller  = UIAlertController(title: "Player Win",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
@@ -242,7 +243,7 @@ extension ViewController: GameLogicDelegate {
         let emeryScore = gameLogic.emeryScore
         labPlayResult.text = "玩家爆炸"
         let controller  = UIAlertController(title: "Banker Win",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
         

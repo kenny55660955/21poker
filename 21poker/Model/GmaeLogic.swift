@@ -130,6 +130,10 @@ class GameLogic {
             delegate?.didReceiveUserLost()
         } else if playerScore == pointLimit {
             delegate?.didReceiveUserBJ()
+        } else if userCards.count == cardLimit {
+            startBankerRound()
+        } else if playerScore == pointLimit {
+            delegate?.didReceiveBankerLost()
         }
     }
     
@@ -158,6 +162,7 @@ class GameLogic {
         emeryCards = getEmeryFirstCars(deck: pokerDeck)
         
         checkUserPoint()
+        
         checkBankerPoint()
         
     }
@@ -167,11 +172,6 @@ class GameLogic {
         
         /// 如果滿五張牌就直接return
         userCards.append(poker)
-        if userCards.count == cardLimit {
-            startBankerRound()
-        } else if playerScore == pointLimit {
-            delegate?.didReceiveBankerLost()
-        }
         
         checkUserPoint()
     }
@@ -183,7 +183,6 @@ class GameLogic {
     
     private func startBankerRound() {
         emeryGetCard()
-        
     }
     
     private func emeryGetCard()  {
