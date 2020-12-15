@@ -9,8 +9,8 @@ import Foundation
 import GameplayKit
 
 protocol GameLogicDelegate: AnyObject {
-    func didGetEmeryFirstArrayNumber(number: Int)
-    func didGetPlaceUsedData(playerUsed: Int, score: Int)
+//    func didGetEmeryFirstArrayNumber(number: Int)
+//    func didGetPlaceUsedData(playerUsed: Int, score: Int)
     func didUpdateUserCards(cards: [PokerType])
     func didUpdateEmeryCards(cards: [PokerType])
     func didReceivePlayerScore(score: Int)
@@ -54,7 +54,27 @@ class GameLogic {
     // 玩家目前放到第幾格了
     private lazy var playerPlaceUsed = 0
     
+    private var nextCardIndex = 0
+    
     // MARK: - Method
+    
+    func replay() {
+        // 莊家目前點數
+        emeryScore = 0
+        emeryTotalNumber = 0
+        // 莊家目前放到第幾格了
+        emeryImagePlaceUsed = 0
+        emeryGetAceCount = 0
+        
+        // 玩家目前點數
+        playerScore = 0
+        playerGetAceCount = 0
+        // 玩家目前放到第幾格了
+        playerPlaceUsed = 0
+        
+        nextCardIndex = 0
+    }
+    
     /// model拿 deck資料
     func setPokerDeck() {
         self.pokerDeck = model.requestData()
@@ -63,7 +83,6 @@ class GameLogic {
     
     /// 取得使用者第一組
     private func getUserFirstCars(deck: [PokerType]) -> [PokerType] {
-        
         return [deck[0], deck[2]]
     }
     
@@ -72,21 +91,42 @@ class GameLogic {
         return [deck[1], deck[3]]
     }
     
+    private func getCard() -> PokerType? {
+        
+        if pokerDeck.indices.contains(nextCardIndex) {
+            let card = pokerDeck[nextCardIndex]
+            return card
+        }
+        
+        return nil
+    }
+    
     /// 更新使用者分數
     private func updateUserScore(cards: [PokerType]) {
+        
+        var score = 0
+        
         for cardScore in cards {
-            playerScore = playerScore + cardScore.pokerNumber
-            
+            score += cardScore.pokerNumber
         }
+        playerScore = score
         delegate?.didReceivePlayerScore(score: playerScore)
     }
     
     /// 更新敵人分數
     private func updateEmeryScore(cards: [PokerType]) {
+        
+        var score = 0
+        
         for cardScore in cards {
-            emeryScore = emeryScore + cardScore.pokerNumber
+            score += cardScore.pokerNumber
         }
+        emeryScore = score
         delegate?.didReceiveEmeryScore(score: emeryScore)
+    }
+    
+    private func resetCardIndex() {
+        nextCardIndex = 4
     }
     
     func start() {
@@ -97,72 +137,23 @@ class GameLogic {
 
         emeryCards = getEmeryFirstCars(deck: shuffledDeck)
         
-
+        resetCardIndex()
     }
     /// Hit方法
     func hit() {
-        if playerPlaceUsed == 5 && playerPlaceUsed < 22 {
-            print("PlayerScore \(playerScore)")
-            delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
-        } else {
-            let numberArray = pokerDeck.map{ $0.pokerNumber }
-            let randomNumber = numberArray.shuffled()
-            let firstRandomNumber = randomNumber.first ?? 0
-            let randomCard = pokerDeck[firstRandomNumber]
-            
-            if playerPlaceUsed == 2 {
-                playerScore = playerScore + randomCard.pokerNumber
-                playerPlaceUsed = playerPlaceUsed + 1
-                print("PlayerScore \(playerScore)")
-                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
-            } else if playerPlaceUsed == 3 {
-                playerScore = playerScore + randomCard.pokerNumber
-                playerPlaceUsed = playerPlaceUsed + 1
-                print("PlayerScore \(playerScore)")
-                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
-            } else if playerPlaceUsed == 4 {
-                playerScore = playerScore + randomCard.pokerNumber
-                playerPlaceUsed = playerPlaceUsed + 1
-                print("PlayerScore \(playerScore)")
-                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
-            }
+        
+        guard let poker = getCard() else { return }
+        
+        nextCardIndex = nextCardIndex + 1
+        /// 如果滿五張牌就直接return
+        userCards.append(poker)
+        if userCards.count == 5 {
+            return
         }
     }
     
     /// Stand方法
     func stand() {
-        while true {
-            if playerScore < 13 && playerGetAceCount > 0 {
-                playerGetAceCount = playerGetAceCount - 1
-                playerScore = playerScore - 1 + 10
-            } else {
-                break
-            }
-        }
-        var tempEmeryScore = 0
-        var tempEmeryGetAceCount = 0
-        let temp3 = pokerDeck[emeryTotalNumber]
-        while true {
-            tempEmeryScore = emeryScore
-            tempEmeryGetAceCount = emeryGetAceCount
-            
-            if emeryScore < 22 && emeryImagePlaceUsed == 5 {
-            } else {
-                while true {
-                    if tempEmeryScore < 13 && tempEmeryGetAceCount > 0 {
-                        tempEmeryGetAceCount = tempEmeryGetAceCount - 1
-                        tempEmeryScore = tempEmeryScore - 1 + 10
-                    } else {
-                        break
-                    }
-                }
-                if emeryScore > 16 && emeryScore < 22 {
-                    if emeryScore >= playerScore {
-                        
-                    }
-                }
-            }
-        }
     }
     
     // MARK: - Return Method
