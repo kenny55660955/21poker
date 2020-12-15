@@ -51,15 +51,15 @@ class ViewController: UIViewController {
         return logic
     }()
     
-    private var i: Int? = nil
+//    private var i: Int? = nil
     
-    private lazy var emeryScore = 0
-    private lazy var emeryFirstArrayNumber = 0
-    private lazy var emeryImagePlaceUsed = 0
-    private lazy var emeryGetAceCount = 0
-    private lazy var playerScore = 0
-    private lazy var playerGetAceCount = 0
-    private lazy var playerPlaceUsed = 0
+//    private lazy var emeryScore = 0
+//    private lazy var emeryFirstArrayNumber = 0
+//    private lazy var emeryImagePlaceUsed = 0
+//    private lazy var emeryGetAceCount = 0
+//    private lazy var playerScore = 0
+//    private lazy var playerGetAceCount = 0
+//    private lazy var playerPlaceUsed = 0
 
     // MARK: - Lift Cycle
     override func viewDidLoad() {
@@ -117,8 +117,8 @@ class ViewController: UIViewController {
     
     private func replay() {
         labPlayResult.text = ""
-        emeryScore = 0
-        playerScore = 0
+//        emeryScore = 0
+//        playerScore = 0
         emeryPlace01.image = UIImage(named: "")
         emeryPlace02.image = UIImage(named: "")
         emeryPlace03.image = UIImage(named: "")
@@ -143,11 +143,11 @@ class ViewController: UIViewController {
         userStart.isUserInteractionEnabled = false
         userStart.alpha = 0
         
-        emeryImagePlaceUsed = 0
-        playerPlaceUsed = 0
-        
-        emeryGetAceCount = 0
-        playerGetAceCount = 0
+//        emeryImagePlaceUsed = 0
+//        playerPlaceUsed = 0
+//
+//        emeryGetAceCount = 0
+//        playerGetAceCount = 0
     }
     
     // MARK: - 取得資料
@@ -194,18 +194,54 @@ class ViewController: UIViewController {
 }
 // MARK: - Logic Delegate 傳資料過來
 extension ViewController: GameLogicDelegate {
-    func didGetPlaceUsedData(playerUsed: Int, playScore: Int) {
+    
+    func didReceivePlayerScore(score: Int) {
+        //TODO: update UI
+        print("CurrentPlayerScore: \(score)")
+        
+    }
+    
+    func didReceiveEmeryScore(score: Int) {
+        // TODO update UI
+        print("CurrentEmeryScore: \(score)")
+    }
+    
+    
+    func didUpdateUserCards(cards: [PokerType]) {
+        
+        print("user update cards: \(cards)")
+        // TODO: - ui update later
+        let firstImage = cards[0].image
+        let secondImage = cards[1].image
+        print("firstImage \(firstImage)")
+        
+        image_player_back01.image = UIImage(named: firstImage)
+        image_player_back02.image = UIImage(named: secondImage)
+        
+    }
+    
+    func didUpdateEmeryCards(cards: [PokerType]) {
+        
+        print("Dealer update cards: \(cards)")
+        // TODO: - ui update
+        let firstImage = cards[0].image
+        let secondImage = cards[1].image
+        image_emery_back01.image = UIImage(named: "\(firstImage)")
+        image_emery_back02.image = UIImage(named: secondImage)
+    }
+    
+    func didGetPlaceUsedData(playerUsed: Int, score: Int) {
         let poker = gameLogic.returnCardName()
-        if playerUsed == 2 {
+        if playerUsed == 3 {
             playerPlace03.image = UIImage(named: poker.image)
-        } else if playerUsed == 3 {
-            playerPlace04.image = UIImage(named: poker.image)
         } else if playerUsed == 4 {
+            playerPlace04.image = UIImage(named: poker.image)
+        } else if playerUsed == 5 {
             playerPlace05.image = UIImage(named: poker.image)
         }
         
         /// 分數部分
-        if playerScore > 21{
+        if score > 21{
             labPlayResult.text = "☠BUSTED!!!☠ "
             let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED!!!☠", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
@@ -218,7 +254,7 @@ extension ViewController: GameLogicDelegate {
             userStand.alpha = 0.5
         }
         
-        if playerScore == 21{
+        if score == 21{
             labPlayResult.text = """
                                   BLACKJACK!!!!
                                   ♛YOU WIN♛
@@ -235,7 +271,7 @@ extension ViewController: GameLogicDelegate {
         }
         
         print("playerUsed \(playerUsed)")
-        print("PlayScore : \(playScore)")
+        print("PlayScore : \(score)")
     }
     
 

@@ -10,7 +10,11 @@ import GameplayKit
 
 protocol GameLogicDelegate: AnyObject {
     func didGetEmeryFirstArrayNumber(number: Int)
-    func didGetPlaceUsedData(playerUsed: Int, playScore: Int)
+    func didGetPlaceUsedData(playerUsed: Int, score: Int)
+    func didUpdateUserCards(cards: [PokerType])
+    func didUpdateEmeryCards(cards: [PokerType])
+    func didReceivePlayerScore(score: Int)
+    func didReceiveEmeryScore(score: Int)
 }
 class GameLogic {
     // MARK: - Property
@@ -23,9 +27,23 @@ class GameLogic {
     
     private lazy var pokerDeck = [PokerType]()
     
+    private lazy var userCards = [PokerType]() {
+        didSet {
+            updateUserScore(cards: self.userCards)
+            delegate?.didUpdateUserCards(cards: self.userCards)
+        }
+    }
+    
+    private lazy var emeryCards = [PokerType]() {
+        didSet {
+            updateEmeryScore(cards: self.emeryCards)
+            delegate?.didUpdateEmeryCards(cards: self.emeryCards)
+        }
+    }
+    
     // 莊家目前點數
     private lazy var emeryScore = 0
-    private lazy var emeryFirstArrayNumber = 0
+    private lazy var emeryTotalNumber = 0
     // 莊家目前放到第幾格了
     private lazy var emeryImagePlaceUsed = 0
     private lazy var emeryGetAceCount = 0
@@ -43,51 +61,49 @@ class GameLogic {
         print("pokerDeck \(pokerDeck)")
     }
     
-    func start() {
-        let numberArray = pokerDeck.map{ $0.pokerNumber }
-        let randomNumber = numberArray.shuffled()
-        let firstRandomNumber = randomNumber.first ?? 0
-        let randomCard = pokerDeck[firstRandomNumber]
+    /// 取得使用者第一組
+    private func getUserFirstCars(deck: [PokerType]) -> [PokerType] {
         
-        for i in 0...3 {
-            if i == 0 {
-                emeryScore = emeryScore + randomCard.pokerNumber
-                emeryFirstArrayNumber = emeryScore
-                if emeryScore == 1 {
-                    emeryGetAceCount = emeryGetAceCount + 1
-                    
-                }
-                emeryImagePlaceUsed = emeryImagePlaceUsed + 1
-                delegate?.didGetEmeryFirstArrayNumber(number: i)
-            } else if i == 1 {
-                playerScore = playerScore + randomCard.pokerNumber
-                playerPlaceUsed = playerPlaceUsed + 1
-                if randomCard.pokerNumber == 1 {
-                    playerGetAceCount = playerGetAceCount + 1
-                }
-                delegate?.didGetEmeryFirstArrayNumber(number: i)
-            } else if i == 2 {
-                emeryScore = emeryScore + randomCard.pokerNumber
-                emeryImagePlaceUsed = emeryImagePlaceUsed + 1
-                if randomCard.pokerNumber == 1 {
-                    emeryGetAceCount = emeryGetAceCount + 1
-                }
-                delegate?.didGetEmeryFirstArrayNumber(number: i)
-            } else if i == 3 {
-                playerScore = playerScore + randomCard.pokerNumber
-                playerPlaceUsed = playerPlaceUsed + 1
-                if randomCard.pokerNumber == 1 {
-                    playerGetAceCount = playerGetAceCount + 1
-                }
-                delegate?.didGetEmeryFirstArrayNumber(number: i)
-            }
+        return [deck[0], deck[2]]
+    }
+    
+    /// 取得敵人第一組
+    private func getEmeryFirstCars(deck: [PokerType]) -> [PokerType] {
+        return [deck[1], deck[3]]
+    }
+    
+    /// 更新使用者分數
+    private func updateUserScore(cards: [PokerType]) {
+        for cardScore in cards {
+            playerScore = playerScore + cardScore.pokerNumber
             
         }
+        delegate?.didReceivePlayerScore(score: playerScore)
+    }
+    
+    /// 更新敵人分數
+    private func updateEmeryScore(cards: [PokerType]) {
+        for cardScore in cards {
+            emeryScore = emeryScore + cardScore.pokerNumber
+        }
+        delegate?.didReceiveEmeryScore(score: emeryScore)
+    }
+    
+    func start() {
+        
+        let shuffledDeck = pokerDeck.shuffled()
+        
+        userCards = getUserFirstCars(deck: shuffledDeck)
+
+        emeryCards = getEmeryFirstCars(deck: shuffledDeck)
+        
+
     }
     /// Hit方法
     func hit() {
         if playerPlaceUsed == 5 && playerPlaceUsed < 22 {
-            delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, playScore: playerScore)
+            print("PlayerScore \(playerScore)")
+            delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
         } else {
             let numberArray = pokerDeck.map{ $0.pokerNumber }
             let randomNumber = numberArray.shuffled()
@@ -97,15 +113,18 @@ class GameLogic {
             if playerPlaceUsed == 2 {
                 playerScore = playerScore + randomCard.pokerNumber
                 playerPlaceUsed = playerPlaceUsed + 1
-                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, playScore: playerScore)
+                print("PlayerScore \(playerScore)")
+                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
             } else if playerPlaceUsed == 3 {
                 playerScore = playerScore + randomCard.pokerNumber
                 playerPlaceUsed = playerPlaceUsed + 1
-                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, playScore: playerScore)
+                print("PlayerScore \(playerScore)")
+                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
             } else if playerPlaceUsed == 4 {
                 playerScore = playerScore + randomCard.pokerNumber
                 playerPlaceUsed = playerPlaceUsed + 1
-                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, playScore: playerScore)
+                print("PlayerScore \(playerScore)")
+                delegate?.didGetPlaceUsedData(playerUsed: playerPlaceUsed, score: playerScore)
             }
         }
     }
@@ -122,7 +141,7 @@ class GameLogic {
         }
         var tempEmeryScore = 0
         var tempEmeryGetAceCount = 0
-        let temp3 = pokerDeck[emeryFirstArrayNumber]
+        let temp3 = pokerDeck[emeryTotalNumber]
         while true {
             tempEmeryScore = emeryScore
             tempEmeryGetAceCount = emeryGetAceCount
