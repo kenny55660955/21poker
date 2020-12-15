@@ -291,7 +291,9 @@ extension ViewController: GameLogicDelegate {
         }
         
         for (index, card) in cards.enumerated() {
-            
+            if index == 1 {
+                image_emery_back01.image = UIImage(named: "cardBackStyle")
+            }
             let cardImage = card.image
             let image = emeryImageViewList[index]
             image.image = UIImage(named: cardImage)
