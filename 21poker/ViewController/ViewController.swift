@@ -173,7 +173,7 @@ extension ViewController: GameLogicDelegate {
 
     func didReceiveBankerBJ() {
         labPlayResult.text = "Black Jack"
-        let controller  = UIAlertController(title: "",message: "OK", preferredStyle: .alert)
+        let controller  = UIAlertController(title: "恭喜Black Jack",message: "OK", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
@@ -213,9 +213,12 @@ extension ViewController: GameLogicDelegate {
     
     
     func didReceiveBankerLost() {
+        let playerScore = gameLogic.playerScore
+        let emeryScore = gameLogic.emeryScore
+        
         labPlayResult.text = "Banker爆炸"
-        let controller  = UIAlertController(title: "",message: "", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "", style: .default, handler: nil)
+        let controller  = UIAlertController(title: "Win",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
         
@@ -231,7 +234,7 @@ extension ViewController: GameLogicDelegate {
         let emeryScore = gameLogic.emeryScore
         
         labPlayResult.text = "玩家爆炸"
-        let controller  = UIAlertController(title: "",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
+        let controller  = UIAlertController(title: "Banker Win",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
@@ -282,7 +285,6 @@ extension ViewController: GameLogicDelegate {
     }
     
     func didUpdateEmeryCards(cards: [PokerType]) {
-        /// 第一張牌 如果 結束show出來
         
         for image in emeryImageViewList {
             image.alpha = 0
@@ -295,30 +297,6 @@ extension ViewController: GameLogicDelegate {
             image.image = UIImage(named: cardImage)
             image.alpha = 1
         }
-        
-//        let secondImage = cards[1].image
-//        let count = cards.count
-//        if count == 2 {
-//            /// 莊家第一張牌都是暗牌
-//            image_emery_back01.image = UIImage(named: "cardBackStyle")
-//            image_emery_back02.image = UIImage(named: secondImage)
-//
-//            image_emery_back01.alpha = 1
-//            image_emery_back02.alpha = 1
-//        } else if count == 3 {
-//            let thirdImage = cards[2].image
-//            image_emery_back03.image = UIImage(named: thirdImage)
-//            image_emery_back03.alpha = 1
-//        } else if count == 4 {
-//            let fourImage = cards[3].image
-//            image_emery_back04.image = UIImage(named: fourImage)
-//            image_emery_back04.alpha = 1
-//        } else if count == 5 {
-//            let fiveImage = cards[4].image
-//            image_emery_back05.image = UIImage(named: fiveImage)
-//            image_emery_back05.alpha = 1
-//        }
-        
     }
 }
 

@@ -35,7 +35,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="q0h-OX-VD4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="2AB-RA-iO3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5an-MU-v0S" secondAttribute="bottom" constant="164" id="Gwh-EA-2uE"/>
@@ -58,9 +58,6 @@
     <resources>
         <image name="chrisBackGround" width="550" height="366"/>
         <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
