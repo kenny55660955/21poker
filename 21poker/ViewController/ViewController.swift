@@ -156,12 +156,12 @@ class ViewController: UIViewController {
     
     //HIT按鈕
     @IBAction private func playHit(_ sender: Any) {
-        state = .start
         hit()
     }
     
     //STAND按鈕
     @IBAction private func btnUserStand(_ sender: Any) {
+        state = .end
         stand()
     }
     
@@ -188,6 +188,7 @@ extension ViewController: GameLogicDelegate {
         userHit.alpha = 0.5
         userStand.isUserInteractionEnabled = false
         userStand.alpha = 0.5
+       
     }
     
     func didReceiveUserBJ() {
@@ -202,6 +203,7 @@ extension ViewController: GameLogicDelegate {
         userHit.alpha = 0.5
         userStand.isUserInteractionEnabled = false
         userStand.alpha = 0.5
+      
     }
     
     
@@ -217,6 +219,7 @@ extension ViewController: GameLogicDelegate {
         userHit.alpha = 0.5
         userStand.isUserInteractionEnabled = false
         userStand.alpha = 0.5
+    
     }
     
     
@@ -235,6 +238,7 @@ extension ViewController: GameLogicDelegate {
         userHit.alpha = 0.5
         userStand.isUserInteractionEnabled = false
         userStand.alpha = 0.5
+
     }
     
     func didReceiveUserLost() {
@@ -254,7 +258,6 @@ extension ViewController: GameLogicDelegate {
     }
     
     func didReceivePlayerScore(score: Int) {
-        
         print("CurrentPlayerScore: \(score)")
         
     }

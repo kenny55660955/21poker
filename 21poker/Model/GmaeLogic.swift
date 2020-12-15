@@ -83,7 +83,7 @@ class GameLogic {
     private func getEmeryFirstCars(deck: [PokerType]) -> [PokerType] {
         return [deck[1], deck[3]]
     }
-    
+    /// 拿一張牌
     private func getCard() -> PokerType? {
         if pokerDeck.indices.contains(nextCardIndex) {
             let card = pokerDeck[nextCardIndex]
@@ -92,7 +92,6 @@ class GameLogic {
         }
         return nil
     }
-    
     /// 更新使用者分數
     private func updateUserScore(cards: [PokerType]) {
         
@@ -131,8 +130,6 @@ class GameLogic {
         } else if playerScore == pointLimit {
             delegate?.didReceiveUserBJ()
         } else if userCards.count == cardLimit {
-            startBankerRound()
-        } else if playerScore == pointLimit {
             delegate?.didReceiveBankerLost()
         }
     }
@@ -169,10 +166,7 @@ class GameLogic {
     /// Hit方法
     func hit() {
         guard let poker = getCard() else { return }
-        
-        /// 如果滿五張牌就直接return
         userCards.append(poker)
-        
         checkUserPoint()
     }
     
