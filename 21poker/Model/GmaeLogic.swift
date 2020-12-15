@@ -19,6 +19,7 @@ protocol GameLogicDelegate: AnyObject {
     func didReceiveBankerBJ()
     func didReceiveUserBJ()
     
+    
 }
 class GameLogic {
     // MARK: - Property
@@ -178,20 +179,8 @@ class GameLogic {
     }
     
     private func startBankerRound() {
+        emeryGetCard()
         
-        if emeryScore == pointLimit {
-            calculateScore()
-            return
-        } else if emeryCards.count == cardLimit {
-            calculateScore()
-            return
-        } else if emeryScore >= playerScore {
-            calculateScore()
-            return
-        } else if emeryScore < playerScore {
-            emeryGetCard()
-            return
-        }
     }
     
     private func emeryGetCard()  {
