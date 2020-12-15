@@ -156,6 +156,7 @@ class ViewController: UIViewController {
     
     //HIT按鈕
     @IBAction private func playHit(_ sender: Any) {
+        
         hit()
     }
     
@@ -163,6 +164,8 @@ class ViewController: UIViewController {
     @IBAction private func btnUserStand(_ sender: Any) {
         state = .end
         stand()
+        userHit.isUserInteractionEnabled = false
+        userHit.alpha = 0.5
     }
     
     //Replay按鈕
