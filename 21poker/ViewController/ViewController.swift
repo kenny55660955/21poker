@@ -62,6 +62,7 @@ class ViewController: UIViewController {
         return logic
     }()
     
+    lazy var state: State = .start
     // MARK: - Lift Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,7 +132,7 @@ class ViewController: UIViewController {
     
     private func start(){
         resetLogic()
-       gameLogic.start()
+        gameLogic.start()
     }
     /// 叫牌
     private func hit() {
@@ -144,10 +145,11 @@ class ViewController: UIViewController {
     private func resetLogic() {
         gameLogic.reset()
     }
-   
+    
     // MARK: - 按鈕功能
     //Start按鈕
     @IBAction func userStartPlay(_ sender: Any) {
+        state = .start
         resetUI()
         start()
     }
@@ -164,14 +166,17 @@ class ViewController: UIViewController {
     
     //Replay按鈕
     @IBAction private func btnUserReplay(_ sender: Any) {
+        state = .start
         resetUI()
         start()
+        
     }
 }
 // MARK: - Logic Delegate 傳資料過來
 extension ViewController: GameLogicDelegate {
-
+    
     func didReceiveBankerBJ() {
+        state = .end
         labPlayResult.text = "Black Jack"
         let controller  = UIAlertController(title: "恭喜Black Jack",message: "OK", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
@@ -185,6 +190,7 @@ extension ViewController: GameLogicDelegate {
     }
     
     func didReceiveUserBJ() {
+        state = .end
         labPlayResult.text = "Black Jack"
         let controller  = UIAlertController(title: "",message: "OK", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
@@ -199,6 +205,7 @@ extension ViewController: GameLogicDelegate {
     
     
     func didReceiveTie() {
+        state = .end
         labPlayResult.text = "Tie"
         let controller  = UIAlertController(title: "雙方點數相同",message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
@@ -213,6 +220,7 @@ extension ViewController: GameLogicDelegate {
     
     
     func didReceiveBankerLost() {
+        state = .end
         let playerScore = gameLogic.playerScore
         let emeryScore = gameLogic.emeryScore
         
@@ -229,10 +237,9 @@ extension ViewController: GameLogicDelegate {
     }
     
     func didReceiveUserLost() {
-        
+        state = .end
         let playerScore = gameLogic.playerScore
         let emeryScore = gameLogic.emeryScore
-        
         labPlayResult.text = "玩家爆炸"
         let controller  = UIAlertController(title: "Banker Win",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
@@ -252,13 +259,9 @@ extension ViewController: GameLogicDelegate {
     }
     
     func didReceiveEmeryScore(score: Int) {
-       
         print("CurrentEmeryScore: \(score)")
     }
-    
-    
     func didUpdateUserCards(cards: [PokerType]) {
-        
         print("user update cards: \(cards)")
         let firstImage = cards[0].image
         let secondImage = cards[1].image
@@ -285,20 +288,26 @@ extension ViewController: GameLogicDelegate {
     }
     
     func didUpdateEmeryCards(cards: [PokerType]) {
-        
+        print("banker update cards : \(cards)")
         for image in emeryImageViewList {
             image.alpha = 0
         }
         
         for (index, card) in cards.enumerated() {
-            if index == 1 {
-                image_emery_back01.image = UIImage(named: "cardBackStyle")
-            }
+            
             let cardImage = card.image
             let image = emeryImageViewList[index]
             image.image = UIImage(named: cardImage)
             image.alpha = 1
+            switch state {
+            case .start:
+                image_emery_back01.image = UIImage(named: "cardBackStyle")
+            case .end:
+                image_emery_back01.image = UIImage(named: cards[0].image)
+            }
         }
+        
+        
     }
 }
 

@@ -9,5 +9,5 @@
 import Foundation
 
 enum State: Int {
-    case begin = 0, playerState, bankerState, end
+    case start = 0,  end
 }
