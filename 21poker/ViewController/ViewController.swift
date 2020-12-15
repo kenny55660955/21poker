@@ -95,39 +95,18 @@ class ViewController: UIViewController {
         image_player_back05.alpha = 0
     }
     
-    private func changeCardsAlpha() {
-        /// 顯示按鈕
-        userHit.isUserInteractionEnabled = true
-        userHit.alpha = 1
+    private func resetUI() {
         
-        /// 顯示Stand
-        userStand.isUserInteractionEnabled = true
-        userStand.alpha = 1
-        
-        /// 顯示Hit
-        userReplay.isUserInteractionEnabled = true
-        userReplay.alpha = 1
-        
-        /// 隱藏Start
-        userStart.isUserInteractionEnabled = false
-        userStart.alpha = 0
-    }
-    
-    /// 重製卡片狀態
-    
-    private func replay() {
         labPlayResult.text = ""
-        emeryPlace01.image = UIImage(named: "")
-        emeryPlace02.image = UIImage(named: "")
-        emeryPlace03.image = UIImage(named: "")
-        emeryPlace04.image = UIImage(named: "")
-        emeryPlace05.image = UIImage(named: "")
+        /// 重設我方牌
+        image_player_back03.image = UIImage(named: "")
+        image_player_back04.image = UIImage(named: "")
+        image_player_back05.image = UIImage(named: "")
+        /// 重設莊家牌
+        image_emery_back03.image = UIImage(named: "")
+        image_emery_back04.image = UIImage(named: "")
+        image_emery_back05.image = UIImage(named: "")
         
-        playerPlace01.image = UIImage(named: "")
-        playerPlace02.image = UIImage(named: "")
-        playerPlace03.image = UIImage(named: "")
-        playerPlace04.image = UIImage(named: "")
-        playerPlace05.image = UIImage(named: "")
         
         userHit.isUserInteractionEnabled = true
         userHit.alpha = 1
@@ -160,11 +139,14 @@ class ViewController: UIViewController {
     private func stand() {
         gameLogic.stand()
     }
+    private func resetLogic() {
+        gameLogic.reset()
+    }
    
     // MARK: - 按鈕功能
     //Start按鈕
     @IBAction func userStartPlay(_ sender: Any) {
-        changeCardsAlpha()
+        resetUI()
         start()
     }
     
@@ -180,131 +162,137 @@ class ViewController: UIViewController {
     
     //Replay按鈕
     @IBAction private func btnUserReplay(_ sender: Any) {
-        replay()
+        resetLogic()
+        resetUI()
         start()
     }
 }
 // MARK: - Logic Delegate 傳資料過來
 extension ViewController: GameLogicDelegate {
     
+    func didReceiveBankerBJ() {
+        labPlayResult.text = "Black Jack"
+        let controller  = UIAlertController(title: "",message: "OK", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "", style: .default, handler: nil)
+        controller.addAction(okAction)
+        present(controller, animated: true, completion: nil)
+        
+        userHit.isUserInteractionEnabled = false
+        userHit.alpha = 0.5
+        userStand.isUserInteractionEnabled = false
+        userStand.alpha = 0.5
+    }
+    
+    func didReceiveUserBJ() {
+        labPlayResult.text = "Black Jack"
+        let controller  = UIAlertController(title: "",message: "OK", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "", style: .default, handler: nil)
+        controller.addAction(okAction)
+        present(controller, animated: true, completion: nil)
+        
+        userHit.isUserInteractionEnabled = false
+        userHit.alpha = 0.5
+        userStand.isUserInteractionEnabled = false
+        userStand.alpha = 0.5
+    }
+    
+    
+    func didReceiveTie() {
+        labPlayResult.text = "Tie"
+        let controller  = UIAlertController(title: "雙方點數相同",message: "OK", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "", style: .default, handler: nil)
+        controller.addAction(okAction)
+        present(controller, animated: true, completion: nil)
+        
+        userHit.isUserInteractionEnabled = false
+        userHit.alpha = 0.5
+        userStand.isUserInteractionEnabled = false
+        userStand.alpha = 0.5
+    }
+    
+    
+    func didReceiveBankerLost() {
+        let score = gameLogic.emeryScore
+        labPlayResult.text = "☠Banker BUSTED!!!☠ "
+        let controller  = UIAlertController(title: "You Win \n BankerScore: \(score)",message: "OK", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "", style: .default, handler: nil)
+        controller.addAction(okAction)
+        present(controller, animated: true, completion: nil)
+        
+        userHit.isUserInteractionEnabled = false
+        userHit.alpha = 0.5
+        userStand.isUserInteractionEnabled = false
+        userStand.alpha = 0.5
+    }
+    
+    func didReceiveUserLost() {
+        
+        let score = gameLogic.playerScore
+        
+        labPlayResult.text = "☠BUSTED!!!☠ "
+        let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED Point: \(score)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
+        controller.addAction(okAction)
+        present(controller, animated: true, completion: nil)
+        
+        userHit.isUserInteractionEnabled = false
+        userHit.alpha = 0.5
+        userStand.isUserInteractionEnabled = false
+        userStand.alpha = 0.5
+    }
+    
     func didReceivePlayerScore(score: Int) {
         //TODO: update UI
         print("CurrentPlayerScore: \(score)")
-        /// 分數部分
-        if score > 21{
-            labPlayResult.text = "☠BUSTED!!!☠ "
-            let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED!!!☠", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
-            controller.addAction(okAction)
-            present(controller, animated: true, completion: nil)
-            
-            userHit.isUserInteractionEnabled = false
-            userHit.alpha = 0.5
-            userStand.isUserInteractionEnabled = false
-            userStand.alpha = 0.5
-        }
-        if score == 21{
-            labPlayResult.text = """
-                                  BLACKJACK!!!!
-                                  ♛YOU WIN♛
-                                  """
-            let controller  = UIAlertController(title: "♛WIN♛",message: "Congratulations!!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "😎", style: .default, handler: nil)
-            controller.addAction(okAction)
-            present(controller, animated: true, completion: nil)
-            
-            userHit.isUserInteractionEnabled = false
-            userHit.alpha = 0.5
-            userStand.isUserInteractionEnabled = false
-            userStand.alpha = 0.5
-        }
+        
     }
     
     func didReceiveEmeryScore(score: Int) {
         // TODO update UI
         print("CurrentEmeryScore: \(score)")
+        
+        
     }
     
     
     func didUpdateUserCards(cards: [PokerType]) {
         
         print("user update cards: \(cards)")
-        // TODO: - ui update later
         let firstImage = cards[0].image
         let secondImage = cards[1].image
-        print("firstImage \(firstImage)")
+        let count = cards.count
+        print("Count\(count)")
+        if count == 2 {
+            image_player_back01.image = UIImage(named: firstImage)
+            image_player_back02.image = UIImage(named: secondImage)
+            image_player_back01.alpha = 1
+            image_player_back02.alpha = 1
+        } else if count == 3 {
+            let thirdImage = cards[2].image
+            image_player_back03.image = UIImage(named: thirdImage)
+            image_player_back03.alpha = 1
+        } else if count == 4{
+            let thirdImage = cards[3].image
+            image_player_back04.image = UIImage(named: thirdImage)
+            image_player_back04.alpha = 1
+        } else if count == 5 {
+            let thirdImage = cards[4].image
+            image_player_back05.image = UIImage(named: thirdImage)
+            image_player_back05.alpha = 1
+        }
         
-        image_player_back01.image = UIImage(named: firstImage)
-        image_player_back02.image = UIImage(named: secondImage)
         
     }
     
     func didUpdateEmeryCards(cards: [PokerType]) {
         
         print("Dealer update cards: \(cards)")
-        // TODO: - ui update
-        let firstImage = cards[0].image
         let secondImage = cards[1].image
-        image_emery_back01.image = UIImage(named: firstImage)
+        /// 莊家第一張牌都是暗牌
+        image_emery_back01.image = UIImage(named: "cardBackStyle")
         image_emery_back02.image = UIImage(named: secondImage)
+        
+        image_emery_back01.alpha = 1
+        image_emery_back02.alpha = 1
     }
 }
-//    func didGetPlaceUsedData(playerUsed: Int, score: Int) {
-//        let poker = gameLogic.returnCardName()
-//        if playerUsed == 3 {
-//            playerPlace03.image = UIImage(named: poker.image)
-//        } else if playerUsed == 4 {
-//            playerPlace04.image = UIImage(named: poker.image)
-//        } else if playerUsed == 5 {
-//            playerPlace05.image = UIImage(named: poker.image)
-//        }
-//
-//        /// 分數部分
-//        if score > 21{
-//            labPlayResult.text = "☠BUSTED!!!☠ "
-//            let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED!!!☠", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
-//            controller.addAction(okAction)
-//            present(controller, animated: true, completion: nil)
-//
-//            userHit.isUserInteractionEnabled = false
-//            userHit.alpha = 0.5
-//            userStand.isUserInteractionEnabled = false
-//            userStand.alpha = 0.5
-//        }
-//
-//        if score == 21{
-//            labPlayResult.text = """
-//                                  BLACKJACK!!!!
-//                                  ♛YOU WIN♛
-//                                  """
-//            let controller  = UIAlertController(title: "♛WIN♛",message: "Congratulations!!", preferredStyle: .alert)
-//            let okAction = UIAlertAction(title: "😎", style: .default, handler: nil)
-//            controller.addAction(okAction)
-//            present(controller, animated: true, completion: nil)
-//
-//            userHit.isUserInteractionEnabled = false
-//            userHit.alpha = 0.5
-//            userStand.isUserInteractionEnabled = false
-//            userStand.alpha = 0.5
-//        }
-//
-//        print("playerUsed \(playerUsed)")
-//        print("PlayScore : \(score)")
-//    }
-    
-//
-//    func didGetEmeryFirstArrayNumber(number: Int) {
-//        let poker = gameLogic.returnCardName()
-//        if number == 0 {
-//            emeryPlace01.image = UIImage(named: "cardStyle")
-//        } else if number == 1 {
-//            playerPlace01.image = UIImage(named: poker.image)
-//            image_emery_back02.alpha = 1
-//        } else if number == 2 {
-//            emeryPlace02.image = UIImage(named: poker.image)
-//        } else if number == 3 {
-//            playerPlace02.image = UIImage(named: poker.image)
-//        }
-//    }
-
