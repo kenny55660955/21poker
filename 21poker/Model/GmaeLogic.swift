@@ -18,6 +18,7 @@ protocol GameLogicDelegate: AnyObject {
     func didReceiveTie()
     func didReceiveBankerBJ()
     func didReceiveUserBJ()
+    
 }
 class GameLogic {
     // MARK: - Property
@@ -44,23 +45,18 @@ class GameLogic {
         }
     }
     
-    // 莊家目前點數
+    /// 莊家目前點數
     private(set) lazy var emeryScore = 0
-    private lazy var emeryTotalNumber = 0
-    // 莊家目前放到第幾格了
-    private lazy var emeryImagePlaceUsed = 0
-    private lazy var emeryGetAceCount = 0
     
-    // 玩家目前點數
+    /// 玩家目前點數
     private(set) lazy var playerScore = 0
-    private lazy var playerGetAceCount = 0
-    // 玩家目前放到第幾格了
-    private lazy var playerPlaceUsed = 0
     
     private var nextCardIndex = 0
     
+    /// 限制手牌
     private let cardLimit = 5
     
+    /// 21點上限
     private let pointLimit = 21
     
     // MARK: - Method
@@ -68,16 +64,7 @@ class GameLogic {
     func reset() {
         // 莊家目前點數
         emeryScore = 0
-        emeryTotalNumber = 0
-        // 莊家目前放到第幾格了
-        emeryImagePlaceUsed = 0
-        emeryGetAceCount = 0
-        
-        // 玩家目前點數
         playerScore = 0
-        playerGetAceCount = 0
-        // 玩家目前放到第幾格了
-        playerPlaceUsed = 0
         
         nextCardIndex = 0
     }
@@ -120,13 +107,14 @@ class GameLogic {
         playerScore = score
         delegate?.didReceivePlayerScore(score: playerScore)
         
-        checkUserPoint()
+        checkUserPointInTheBegin()
     }
     
-    private func checkUserPoint() {
-      
+    private func checkUserPointInTheBegin() {
         if playerScore > pointLimit {
             delegate?.didReceiveUserLost()
+        } else if playerScore == pointLimit {
+            delegate?.didReceiveUserBJ()
         }
     }
     
@@ -139,12 +127,19 @@ class GameLogic {
             score += cardScore.pokerNumber
         }
         emeryScore = score
-        print("Current : \(emeryScore)")
+        
         delegate?.didReceiveEmeryScore(score: emeryScore)
         
-        checkBankerPoint()
+        checkBankerPointInTheBegin()
         
-        bankerGetNextCardIfNeeded()
+    }
+    
+    private func checkBankerPointInTheBegin() {
+        if emeryScore > pointLimit {
+            delegate?.didReceiveBankerLost()
+        } else if emeryScore == pointLimit{
+            delegate?.didReceiveBankerBJ()
+        }
     }
     
     private func resetCardIndex() {
@@ -152,18 +147,20 @@ class GameLogic {
     }
     
     func start() {
-        
-        let shuffledDeck = pokerDeck.shuffled()
-        
-        userCards = getUserFirstCars(deck: shuffledDeck)
-        
-        emeryCards = getEmeryFirstCars(deck: shuffledDeck)
-        
         resetCardIndex()
+        
+        self.pokerDeck = pokerDeck.shuffled()
+        
+        userCards = getUserFirstCars(deck: pokerDeck)
+        
+        emeryCards = getEmeryFirstCars(deck: pokerDeck)
+        
+        checkUserPointInTheBegin()
+        checkBankerPointInTheBegin()
+        
     }
     /// Hit方法
     func hit() {
-        
         guard let poker = getCard() else { return }
         
         /// 如果滿五張牌就直接return
@@ -192,14 +189,8 @@ class GameLogic {
             calculateScore()
             return
         } else if emeryScore < playerScore {
-           emeryGetCard()
+            emeryGetCard()
             return
-        }
-    }
-    
-    private func checkBankerPoint() {
-        if emeryScore > pointLimit {
-            delegate?.didReceiveUserLost()
         }
     }
     
@@ -209,14 +200,10 @@ class GameLogic {
     }
     
     private func bankerGetNextCardIfNeeded()  {
-        if emeryCards.count < cardLimit && emeryScore < playerScore {
-            emeryGetCard()
-        }
+       
     }
     
     private func calculateScore() {
-        // user score
-        // banker score
         
         if emeryScore == pointLimit {
             delegate?.didReceiveBankerBJ()

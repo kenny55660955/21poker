@@ -38,6 +38,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var image_emery_back04: UIImageView!
     @IBOutlet weak var image_emery_back05: UIImageView!
     
+    private lazy var emeryImageViewList: [UIImageView] = {
+        
+        return [
+            image_emery_back01,
+            image_emery_back02,
+            image_emery_back03,
+            image_emery_back04,
+            image_emery_back05
+        ]
+    }()
+    
     //我方陣營
     @IBOutlet weak var image_player_back01: UIImageView!
     @IBOutlet weak var image_player_back02: UIImageView!
@@ -51,16 +62,6 @@ class ViewController: UIViewController {
         return logic
     }()
     
-//    private var i: Int? = nil
-    
-//    private lazy var emeryScore = 0
-//    private lazy var emeryFirstArrayNumber = 0
-//    private lazy var emeryImagePlaceUsed = 0
-//    private lazy var emeryGetAceCount = 0
-//    private lazy var playerScore = 0
-//    private lazy var playerGetAceCount = 0
-//    private lazy var playerPlaceUsed = 0
-
     // MARK: - Lift Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,13 +100,13 @@ class ViewController: UIViewController {
         
         labPlayResult.text = ""
         /// 重設我方牌
-        image_player_back03.image = UIImage(named: "")
-        image_player_back04.image = UIImage(named: "")
-        image_player_back05.image = UIImage(named: "")
+        image_player_back03.image = nil
+        image_player_back04.image = nil
+        image_player_back05.image = nil
         /// 重設莊家牌
-        image_emery_back03.image = UIImage(named: "")
-        image_emery_back04.image = UIImage(named: "")
-        image_emery_back05.image = UIImage(named: "")
+        image_emery_back03.image = nil
+        image_emery_back04.image = nil
+        image_emery_back05.image = nil
         
         
         userHit.isUserInteractionEnabled = true
@@ -129,6 +130,7 @@ class ViewController: UIViewController {
     // MARK: - 功能方法
     
     private func start(){
+        resetLogic()
        gameLogic.start()
     }
     /// 叫牌
@@ -162,14 +164,13 @@ class ViewController: UIViewController {
     
     //Replay按鈕
     @IBAction private func btnUserReplay(_ sender: Any) {
-        resetLogic()
         resetUI()
         start()
     }
 }
 // MARK: - Logic Delegate 傳資料過來
 extension ViewController: GameLogicDelegate {
-    
+
     func didReceiveBankerBJ() {
         labPlayResult.text = "Black Jack"
         let controller  = UIAlertController(title: "",message: "OK", preferredStyle: .alert)
@@ -199,7 +200,7 @@ extension ViewController: GameLogicDelegate {
     
     func didReceiveTie() {
         labPlayResult.text = "Tie"
-        let controller  = UIAlertController(title: "雙方點數相同",message: "OK", preferredStyle: .alert)
+        let controller  = UIAlertController(title: "雙方點數相同",message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
@@ -212,9 +213,8 @@ extension ViewController: GameLogicDelegate {
     
     
     func didReceiveBankerLost() {
-        let score = gameLogic.emeryScore
-        labPlayResult.text = "☠Banker BUSTED!!!☠ "
-        let controller  = UIAlertController(title: "You Win \n BankerScore: \(score)",message: "OK", preferredStyle: .alert)
+        labPlayResult.text = "Banker爆炸"
+        let controller  = UIAlertController(title: "",message: "", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
@@ -227,11 +227,12 @@ extension ViewController: GameLogicDelegate {
     
     func didReceiveUserLost() {
         
-        let score = gameLogic.playerScore
+        let playerScore = gameLogic.playerScore
+        let emeryScore = gameLogic.emeryScore
         
-        labPlayResult.text = "☠BUSTED!!!☠ "
-        let controller  = UIAlertController(title: "☠LOSE☠",message: "☠BUSTED Point: \(score)", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "😤", style: .default, handler: nil)
+        labPlayResult.text = "玩家爆炸"
+        let controller  = UIAlertController(title: "",message: "PlayerScore: \(playerScore)   BankerScore: \(emeryScore)", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         controller.addAction(okAction)
         present(controller, animated: true, completion: nil)
         
@@ -242,16 +243,14 @@ extension ViewController: GameLogicDelegate {
     }
     
     func didReceivePlayerScore(score: Int) {
-        //TODO: update UI
+        
         print("CurrentPlayerScore: \(score)")
         
     }
     
     func didReceiveEmeryScore(score: Int) {
-        // TODO update UI
+       
         print("CurrentEmeryScore: \(score)")
-        
-        
     }
     
     
@@ -261,7 +260,7 @@ extension ViewController: GameLogicDelegate {
         let firstImage = cards[0].image
         let secondImage = cards[1].image
         let count = cards.count
-        print("Count\(count)")
+        
         if count == 2 {
             image_player_back01.image = UIImage(named: firstImage)
             image_player_back02.image = UIImage(named: secondImage)
@@ -272,27 +271,54 @@ extension ViewController: GameLogicDelegate {
             image_player_back03.image = UIImage(named: thirdImage)
             image_player_back03.alpha = 1
         } else if count == 4{
-            let thirdImage = cards[3].image
-            image_player_back04.image = UIImage(named: thirdImage)
+            let fourImage = cards[3].image
+            image_player_back04.image = UIImage(named: fourImage)
             image_player_back04.alpha = 1
         } else if count == 5 {
-            let thirdImage = cards[4].image
-            image_player_back05.image = UIImage(named: thirdImage)
+            let fiveImage = cards[4].image
+            image_player_back05.image = UIImage(named: fiveImage)
             image_player_back05.alpha = 1
         }
-        
-        
     }
     
     func didUpdateEmeryCards(cards: [PokerType]) {
+        /// 第一張牌 如果 結束show出來
         
-        print("Dealer update cards: \(cards)")
-        let secondImage = cards[1].image
-        /// 莊家第一張牌都是暗牌
-        image_emery_back01.image = UIImage(named: "cardBackStyle")
-        image_emery_back02.image = UIImage(named: secondImage)
+        for image in emeryImageViewList {
+            image.alpha = 0
+        }
         
-        image_emery_back01.alpha = 1
-        image_emery_back02.alpha = 1
+        for (index, card) in cards.enumerated() {
+            
+            let cardImage = card.image
+            let image = emeryImageViewList[index]
+            image.image = UIImage(named: cardImage)
+            image.alpha = 1
+        }
+        
+//        let secondImage = cards[1].image
+//        let count = cards.count
+//        if count == 2 {
+//            /// 莊家第一張牌都是暗牌
+//            image_emery_back01.image = UIImage(named: "cardBackStyle")
+//            image_emery_back02.image = UIImage(named: secondImage)
+//
+//            image_emery_back01.alpha = 1
+//            image_emery_back02.alpha = 1
+//        } else if count == 3 {
+//            let thirdImage = cards[2].image
+//            image_emery_back03.image = UIImage(named: thirdImage)
+//            image_emery_back03.alpha = 1
+//        } else if count == 4 {
+//            let fourImage = cards[3].image
+//            image_emery_back04.image = UIImage(named: fourImage)
+//            image_emery_back04.alpha = 1
+//        } else if count == 5 {
+//            let fiveImage = cards[4].image
+//            image_emery_back05.image = UIImage(named: fiveImage)
+//            image_emery_back05.alpha = 1
+//        }
+        
     }
 }
+
