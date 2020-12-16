@@ -104,21 +104,21 @@ class GameLogic {
     }
     /// 更新使用者分數
     private func updateUserScore(cards: [PokerType]) {
-        playerScore = get(cards: cards)
+        playerScore = calculateSpecialAce(cards: cards)
         delegate?.didReceivePlayerScore(score: playerScore)
         
         checkUserPoint()
     }
     /// 更新敵人分數
     private func updateEmeryScore(cards: [PokerType]) {
-        emeryScore = get(cards: cards)
+        emeryScore = calculateSpecialAce(cards: cards)
         delegate?.didReceiveEmeryScore(score: emeryScore)
         
         checkBankerPoint()
         
     }
     
-    func get(cards: [PokerType]) -> Int {
+    func calculateSpecialAce(cards: [PokerType]) -> Int {
         
         var score = 0
         
@@ -138,24 +138,6 @@ class GameLogic {
         }
         return score
     }
-    
-    /// 判斷Ace 1 or 11 所以寫成一個方法計算完直接回傳分數
-//    func calculateCardPoint(card: PokerType) -> Int {
-//        var score = 0
-//        if card.pokerNumber == 1 {
-//            if score + 11 > pointLimit {
-//                score += 1
-//                return score
-//            } else {
-//                score += 11
-//                return score
-//            }
-//
-//        } else {
-//            score += card.pokerNumber
-//            return score
-//        }
-//    }
     
     /// 檢查User index
     private func checkUserPoint() {
