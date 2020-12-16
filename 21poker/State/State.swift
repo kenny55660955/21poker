@@ -9,5 +9,9 @@
 import Foundation
 
 enum State: Int {
-    case start = 0,  end
+    case start = 0, end
+}
+
+enum GameSet: Int {
+    case playState, bankState
 }
