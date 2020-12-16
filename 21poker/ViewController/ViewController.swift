@@ -308,7 +308,8 @@ extension ViewController: GameLogicDelegate {
             image.alpha = 1
             switch state {
             case .start:
-                image_emery_back01.image = UIImage(named: "cardBackStyle")
+//                image_emery_back01.image = UIImage(named: "cardBackStyle")
+                image_emery_back01.image = UIImage(named: cards[0].image)
             case .end:
                 image_emery_back01.image = UIImage(named: cards[0].image)
             }

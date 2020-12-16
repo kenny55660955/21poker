@@ -11,4 +11,15 @@ struct PokerType {
     let pokerNumber: Int
     let image: String
     let porkerFlower: Int
+    
+    var isSpecialAce = true
+    
+    var point: Int {
+        
+        if pokerNumber == 1,
+           isSpecialAce {
+            return 11
+        }
+        return pokerNumber
+    }
 }

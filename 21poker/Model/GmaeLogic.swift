@@ -58,7 +58,17 @@ class GameLogic {
     /// 21點上限
     private let pointLimit = 21
     
+    /// 如果取得Ace
+    private var gotAce = 0
+    
+    /// 判斷目前回合 分開計算分數
+    var state: GameSet = .playState
+    
     // MARK: - Method
+    
+    func countAce() {
+        
+    }
     
     func reset() {
         // 莊家目前點數
@@ -86,7 +96,19 @@ class GameLogic {
     /// 拿一張牌
     private func getCard() -> PokerType? {
         if pokerDeck.indices.contains(nextCardIndex) {
+            
             let card = pokerDeck[nextCardIndex]
+            
+            
+            let checkCardPoint = calculateCardPoint(card: card)
+            
+            switch state {
+            case .playState:
+                playerScore += checkCardPoint
+            case .bankState:
+                emeryScore += checkCardPoint
+            }
+            
             nextCardIndex = nextCardIndex + 1
             return card
         }
@@ -94,26 +116,29 @@ class GameLogic {
     }
     /// 更新使用者分數
     private func updateUserScore(cards: [PokerType]) {
+        state = .playState
         
+        print("state \(state)")
         var score = 0
         
-        for cardScore in cards {
-            score += cardScore.pokerNumber
+        for card in cards {
+          let point = calculateCardPoint(card: card)
+            score += point
         }
         playerScore = score
         delegate?.didReceivePlayerScore(score: playerScore)
         
         checkUserPoint()
     }
-   
-    
     /// 更新敵人分數
     private func updateEmeryScore(cards: [PokerType]) {
-        
+        state = .bankState
+        print("state \(state)")
         var score = 0
         
-        for cardScore in cards {
-            score += cardScore.pokerNumber
+        for card in cards {
+            let point = calculateCardPoint(card: card)
+            score += point
         }
         emeryScore = score
         
@@ -121,6 +146,24 @@ class GameLogic {
         
         checkBankerPoint()
         
+    }
+    
+    /// 判斷Ace 1 or 11 所以寫成一個方法計算完直接回傳分數
+    func calculateCardPoint(card: PokerType) -> Int {
+        var score = 0
+        if card.pokerNumber == 1 {
+            if score + 11 > pointLimit {
+                score += 1
+                return score
+            } else {
+                score += 11
+                return score
+            }
+            
+        } else {
+            score += card.pokerNumber
+            return score
+        }
     }
     
     /// 檢查User index
@@ -166,7 +209,9 @@ class GameLogic {
     /// Hit方法
     func hit() {
         guard let poker = getCard() else { return }
+        
         userCards.append(poker)
+        
         checkUserPoint()
     }
     
