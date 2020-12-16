@@ -61,8 +61,6 @@ class GameLogic {
     /// 如果取得Ace
     private var gotAce = 0
     
-    /// 判斷目前回合 分開計算分數
-    var state: GameSet = .playState
     
     // MARK: - Method
     
@@ -98,17 +96,7 @@ class GameLogic {
         if pokerDeck.indices.contains(nextCardIndex) {
             
             let card = pokerDeck[nextCardIndex]
-            
-            
-            let checkCardPoint = calculateCardPoint(card: card)
-            
-            switch state {
-            case .playState:
-                playerScore += checkCardPoint
-            case .bankState:
-                emeryScore += checkCardPoint
-            }
-            
+
             nextCardIndex = nextCardIndex + 1
             return card
         }
@@ -116,54 +104,39 @@ class GameLogic {
     }
     /// 更新使用者分數
     private func updateUserScore(cards: [PokerType]) {
-        state = .playState
-        
-        print("state \(state)")
-        var score = 0
-        
-        for card in cards {
-          let point = calculateCardPoint(card: card)
-            score += point
-        }
-        playerScore = score
+        playerScore = calculateSpecialAce(cards: cards)
         delegate?.didReceivePlayerScore(score: playerScore)
         
         checkUserPoint()
     }
     /// 更新敵人分數
     private func updateEmeryScore(cards: [PokerType]) {
-        state = .bankState
-        print("state \(state)")
-        var score = 0
-        
-        for card in cards {
-            let point = calculateCardPoint(card: card)
-            score += point
-        }
-        emeryScore = score
-        
+        emeryScore = calculateSpecialAce(cards: cards)
         delegate?.didReceiveEmeryScore(score: emeryScore)
         
         checkBankerPoint()
         
     }
     
-    /// 判斷Ace 1 or 11 所以寫成一個方法計算完直接回傳分數
-    func calculateCardPoint(card: PokerType) -> Int {
+    func calculateSpecialAce(cards: [PokerType]) -> Int {
+        
         var score = 0
-        if card.pokerNumber == 1 {
-            if score + 11 > pointLimit {
-                score += 1
-                return score
+        
+        for card in cards {
+            if card.pokerNumber == 1 {
+                if score + 11 > pointLimit {
+                    score += 1
+                    
+                } else {
+                    score += 11
+                    
+                }
             } else {
-                score += 11
-                return score
+                score += card.pokerNumber
+                
             }
-            
-        } else {
-            score += card.pokerNumber
-            return score
         }
+        return score
     }
     
     /// 檢查User index
